@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ou yang Po-yen & Chen Yi han 婚禮邀請函</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+TC:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Elegant Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --morandi-gold: #d4a373;
+            --morandi-green: #8da399;
+            --morandi-bg: #fdfaf7;
+            --soft-white: rgba(255, 255, 255, 0.95);
+        }
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background-color: var(--morandi-bg);
+            color: #4a4a4a;
+            scroll-behavior: smooth;
+            /* 允許中文在手機版正常流暢地自適應斷行，徹底防止文字溢出跑版 */
+            word-break: normal; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .font-eng {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Mobile wrap optimization (防止智慧型手機自動換行跑版) */
+        .no-wrap {
+            white-space: nowrap !important;
+            display: inline-block;
+        }
+        /* Frosted Glass Navbar */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
+            z-index: 1000;
+        }
+        /* Hero Section */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.postimg.cc/PJy42sxr/1-(139).jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        /* Countdown Cards (Mobile Optimized - 防止極小螢幕溢出) */
+        .timer-card {
+            background: var(--soft-white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px -10px rgba(212, 163, 115, 0.2);
+            padding: 0.5rem 0.2rem;
+            min-width: 58px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }                
+        @media (min-width: 375px) {
+            .timer-card {
+                padding: 0.75rem 0.25rem;
+                min-width: 68px;
+            }
+        }
+        @media (min-width: 768px) {
+            .timer-card {
+                padding: 1.5rem 1rem;
+                min-width: 95px;
+            }
+        }
+        .timer-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(212, 163, 115, 0.3);
+            margin: 0 3px;
+        }                
+        @media (min-width: 375px) {
+            .timer-divider {
+                height: 25px;
+                margin: 0 6px;
+            }
+        }
+        @media (min-width: 768px) {
+            .timer-divider {
+                height: 45px;
+                margin: 0 15px;
+            }
+        }
+        /* V-Card Style */
+        .v-card {
+            background: white;
+            border-left: 4px solid var(--morandi-gold);
+            padding: 1.25rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.02);
+            margin-bottom: 1.5rem;
+            border-radius: 0 16px 16px 0;
+        }
+        @media (min-width: 768px) {
+            .v-card {
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+        }
+        /* Smart Fields Animation */
+        .smart-field {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+        .active-field {
+            max-height: 1000px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+        /* Form Styling */
+        .form-input {
+            border: none;
+            border-bottom: 1px solid #e2e2e2;
+            padding: 0.75rem 0;
+            width: 100%;
+            background: transparent;
+            transition: border-color 0.3s;
+            border-radius: 0;
+            appearance: none;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--morandi-gold);
+        }
+        .submit-btn {
+            background-color: var(--morandi-gold);
+            color: white;
+            padding: 1rem 3rem;
+            letter-spacing: 3px;
+            transition: all 0.4s;
+            box-shadow: 0 10px 20px -10px rgba(212, 163, 115, 0.5);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 4s infinite linear;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            border-radius: 12px;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        /* Floating Music Vinyl Animation */
+        @keyframes rotate-music {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spinning {
+            animation: rotate-music 10s linear infinite;
+        }
+        /* Petal Canvas Overlay */
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+        /* Scroll Reveal Effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="w-full">
+
+    <!-- Canvas for Floating Petals -->
+    <canvas id="petal-canvas"></canvas>
+
+    <!-- Floating Background Music Player -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
+        <!-- 音樂提醒氣泡：引導點擊 -->
+        <div id="music-tip" class="bg-white/95 text-stone-500 border border-brand-gold/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
+            點擊播放背景音樂 🎵
+        </div>
+        <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-brand-gold/30 text-brand-gold rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-gold/50">
+            <i id="music-icon" class="fa-solid fa-music text-lg"></i>
+        </button>
+        <!-- 穩定高品質的卡農鋼琴曲來源，加入 autoplay 屬性 -->
+        <audio id="bg-music" autoplay loop src="https://ia800902.us.archive.org/26/items/ClassicalPianoMusic_149/CanonInD.mp3"></audio>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 w-full px-3 md:px-12 py-3 flex justify-between items-center">
+        <!-- 導覽列左上角名字在手機版顯示 O. P. Ou yang & Y. H. Chen，寬螢幕才展示完整姓名，完美防止文字重疊與跑版 -->
+        <div class="font-eng text-sm md:text-xl font-semibold tracking-widest text-[#d4a373] whitespace-nowrap">
+            <span class="md:hidden">O. P. Ou yang & Y. H. Chen</span>
+            <span class="hidden md:inline">Ou yang Po-yen & Chen Yi han</span>
+        </div>
+        <!-- 整合連結，微調手機版間距 space-x-2.5，避免重疊 -->
+        <div class="flex space-x-2.5 sm:space-x-8 md:space-x-12 text-[10px] sm:text-xs tracking-widest text-gray-400 uppercase font-bold items-center">
+            <a href="#about" class="hover:text-[#d4a373] transition" data-zh="關於我們" data-en="ABOUT">關於我們</a>
+            <a href="#dress-code" class="hover:text-[#d4a373] transition" data-zh="著裝建議" data-en="DRESS CODE">著裝建議</a>
+            <a href="#details" class="hover:text-[#d4a373] transition" data-zh="婚禮詳情" data-en="DETAILS">婚禮詳情</a>
+            <a href="#rsvp" class="hover:text-[#d4a373] transition text-gray-700" data-zh="出席回函" data-en="RSVP">出席回函</a>
+            <!-- 靜態雙語切換按鈕 -->
+            <button id="lang-toggle-btn" onclick="toggleLanguage()" class="hover:text-[#d4a373] transition text-[#d4a373] border border-[#d4a373]/30 px-2 py-0.5 rounded text-[9px] sm:text-[10px] tracking-normal font-sans">EN</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg flex items-center justify-center text-center text-white px-4">
+        <div class="w-full max-w-full overflow-hidden">
+            <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-3 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">Forever Starts with You</h2>
+            <!-- 主名字：單行顯示並自我縮放，確保不跑版 -->
+            <h1 class="font-eng text-[5.8vw] sm:text-4xl md:text-6xl lg:text-7.5xl mb-6 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-md">
+                Ou yang Po-yen <span class="text-[4vw] sm:text-2xl md:text-4xl italic text-[#d4a373]">&</span> Chen Yi han
+            </h1>
+            <p class="text-xs sm:text-sm md:text-xl tracking-[0.4em] font-light opacity-90 text-brand-gold" data-zh="伯此一生，宜見鍾情" data-en="A Lifetime Together, A Perfect Love.">伯此一生，宜見鍾情</p>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="about" class="py-16 md:py-32 px-4 bg-[#fdfaf7] text-center relative z-10 w-full">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="倒數計時" data-en="THE COUNTDOWN">The Countdown</h3>            
+            
+            <div id="countdown" class="flex justify-center items-center flex-nowrap reveal mx-auto max-w-full">
+                <div class="timer-card">
+                    <div class="shimmer"></div>
+                    <span id="days" class="font-eng text-xl sm:text-2xl md:text-5xl block text-[#d4a373] font-light">00</span>
+                    <span class="text-[8px] md:text-[10px] tracking-widest opacity-50 uppercase" data-zh="天" data-en="DAYS">Days</span>
+                </div>
+                <div class="timer-divider"></div>
+                <div class="timer-card">
+                    <div class="shimmer"></div>
+                    <span id="hours" class="font-eng text-xl sm:text-2xl md:text-5xl block text-[#d4a373] font-light">00</span>
+                    <span class="text-[8px] md:text-[10px] tracking-widest opacity-50 uppercase" data-zh="時" data-en="HRS">Hrs</span>
+                </div>
+                <div class="timer-divider"></div>
+                <div class="timer-card">
+                    <div class="shimmer"></div>
+                    <span id="minutes" class="font-eng text-xl sm:text-2xl md:text-5xl block text-[#d4a373] font-light">00</span>
+                    <span class="text-[8px] md:text-[10px] tracking-widest opacity-50 uppercase" data-zh="分" data-en="MIN">Min</span>
+                </div>
+                <div class="timer-divider"></div>
+                <div class="timer-card">
+                    <div class="shimmer"></div>
+                    <span id="seconds" class="font-eng text-xl sm:text-2xl md:text-5xl block text-[#d4a373] font-light">00</span>
+                    <span class="text-[8px] md:text-[10px] tracking-widest opacity-50 uppercase" data-zh="秒" data-en="SEC">Sec</span>
+                </div>
+            </div>
+
+            <!-- 浪漫引言：精美自適應排版 -->
+            <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-400 px-4 text-xs sm:text-sm md:text-base reveal" id="quote-text"
+                 data-zh="「遇見你，裝飾了我所有的夢境，<br class='hidden sm:inline'>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br class='hidden sm:inline'>把平凡日子過成最珍貴的風景。」"
+                 data-en="&ldquo;Meeting you decorated all my dreams,<br class='hidden sm:inline'> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br class='hidden sm:inline'> turning ordinary days into the most precious scenery.&rdquo;">
+                「遇見你，裝飾了我所有的夢境，<br class="hidden sm:inline">
+                也讓未來有了最溫柔的方向。<br><br>
+                在未來的漫長歲月裡，我們攜手並進，<br class="hidden sm:inline">
+                把平凡日子過成最珍貴的風景。」
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="details" class="py-16 md:py-32 px-4 sm:px-6 bg-[#fdfaf7] relative z-10 w-full">
+        <div class="max-w-3xl mx-auto">
+            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 md:mb-16 text-center uppercase opacity-70 font-semibold" data-zh="婚禮詳情" data-en="WEDDING DETAILS">Wedding Details</h3>
+            
+            <!-- 晚宴資訊 V-Card -->
+            <div class="v-card reveal">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
+                    <div>
+                        <h4 class="text-lg md:text-2xl font-bold tracking-widest" data-zh="【 晚宴資訊 】" data-en="【 Banquet Info 】">【 晚宴資訊 】</h4>
+                        <p class="font-eng text-gray-400 italic text-[10px] md:text-xs tracking-widest uppercase mt-1">The Wedding Banquet</p>
+                    </div>
+                    <div class="text-[#d4a373] font-bold text-xs md:text-lg border-l md:border-l-0 pl-4 md:pl-0 border-[#d4a373]">
+                        <span class="no-wrap">2026.12.12 (SAT)</span>
+                    </div>
+                </div>
+                <div class="space-y-4 text-gray-500 text-xs md:text-base leading-relaxed">
+                    <p>
+                        <span class="font-bold text-gray-700" data-zh="地點：" data-en="Venue: ">地點：</span>
+                        <span class="no-wrap" data-zh="基隆港海產樓" data-en="Keelung Port Seafood Restaurant">基隆港海產樓</span>
+                    </p>
+                    <p>
+                        <span class="font-bold text-gray-700" data-zh="地址：" data-en="Address: ">地址：</span>
+                        <span data-zh="基隆市信義區信二路 207 號" data-en="No. 207, Xin 2nd Rd., Xinyi Dist., Keelung City">基隆市信義區信二路 207 號</span>
+                    </p>
+                    <p>
+                        <span class="font-bold text-gray-700" data-zh="時間：" data-en="Time: ">時間：</span>
+                        <span data-zh="18:00 準時開席" data-en="18:00 Sharp">18:00 準時開席</span>
+                    </p>
+                    
+                    <!-- 導航與一鍵規劃路線雙按鈕排版 -->
+                    <div class="pt-2 flex flex-wrap gap-x-4 gap-y-2 items-center">
+                        <a href="https://maps.google.com/?q=基隆港海產樓" target="_blank" class="inline-flex items-center text-xs tracking-[0.2em] text-[#d4a373] border-b border-[#d4a373]/30 pb-1 hover:border-[#d4a373] transition font-bold font-sans">
+                            <i class="fa-regular fa-map mr-2"></i> <span data-zh="GOOGLE MAP 導航" data-en="GOOGLE MAPS">GOOGLE MAP 導航</span>
+                        </a>
+                        <span class="text-stone-300 hidden sm:inline">|</span>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=基隆港海產樓" target="_blank" class="inline-flex items-center text-xs tracking-[0.2em] text-[#8da399] border-b border-[#8da399]/30 pb-1 hover:text-[#5f746b] hover:border-[#5f746b] transition font-bold font-sans">
+                            <i class="fa-solid fa-diamond-turn-right mr-2"></i> <span data-zh="一鍵規劃路線" data-en="GET DIRECTIONS">一鍵規劃路線</span>
+                        </a>
+                    </div>
+                    
+                    <!-- 嵌入 Google 地圖 -->
+                    <div class="mt-6 rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 h-56 sm:h-80 w-full">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.8906352037107!2d121.74543767605417!3d25.13175853381677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345d4e135b1c97a7%3A0x64cf5d3a241db1b!2z5Z-66ZqG5riv5rW355Si5qiT!5e0!3m2!1szh-TW!2stw!4v1710000000000" 
+                                class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <!-- 直接展示的交通指引區塊 -->
+                    <div class="mt-10 pt-6 border-t border-stone-100">
+                        <h4 class="text-xs sm:text-sm tracking-[0.2em] text-[#8da399] flex items-center font-bold uppercase mb-4">
+                            <i class="fa-solid fa-map-location-dot mr-2"></i>
+                            <span data-zh="交通指引" data-en="TRANSPORTATION">交通指引</span>
+                        </h4>
+                        <div class="bg-gray-50 px-4 sm:px-6 py-2 rounded-2xl text-xs md:text-sm leading-relaxed text-gray-500 border border-stone-100">
+                            <div class="py-2 space-y-4">
+                                <div>
+                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                        <i class="fa-solid fa-train text-[#8da399]"></i> <span data-zh="台鐵" data-en="Railway (TRA)">台鐵</span>
+                                    </p>
+                                    <p data-zh="搭乘台鐵至「基隆車站」，出站後轉乘計程車約 5–10 分鐘即可抵達會場。" data-en="Take the train to Keelung Station, then take a taxi for about 5-10 minutes to the venue.">搭乘台鐵至「<span class="no-wrap">基隆車站</span>」，出站後轉乘計程車約 <span class="no-wrap">5–10 分鐘</span>即可抵達會場。</p>
+                                </div>
+                                <div class="border-t border-gray-200/50 pt-3">
+                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                        <i class="fa-solid fa-bus text-[#8da399]"></i> <span data-zh="國道客運" data-en="Intercity Bus">國道客運</span>
+                                    </p>
+                                    <p data-zh="可搭乘往「基隆」方向之國道客運等路線，至「基隆車站」下車後，再轉乘計程車前往會場。" data-en="Take a highway bus towards Keelung, get off at Keelung Station, and take a taxi to the venue.">可搭乘往「基隆」方向之國道客運等路線，至「<span class="no-wrap">基隆車站</span>」下車後，再轉乘計程車前往會場。</p>
+                                </div>
+                                <div class="border-t border-gray-200/50 pt-3">
+                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                        <i class="fa-solid fa-arrows-spin text-[#8da399]"></i> <span data-zh="在地轉乘 (公車/步行)" data-en="Local Transfer (Bus/Walk)">在地轉乘 (公車/步行)</span>
+                                    </p>
+                                    <p data-zh="於基隆車站周邊可轉乘市區公車前往信二路一帶，或依 Google 地圖導航步行／短程計程車前往會場。" data-en="Transfer to city buses near Keelung Station to Xin 2nd Road, or walk/take a short taxi ride using Google Maps.">於<span class="no-wrap">基隆車站</span>周邊可轉乘市區公車前往<span class="no-wrap">信二路</span>一帶，或依 Google 地圖導航步行／短程計程車前往會場。</p>
+                                </div>
+                                <div class="border-t border-gray-200/50 pt-3">
+                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                        <i class="fa-solid fa-car text-[#8da399]"></i> <span data-zh="自行開車" data-en="By Car">自行開車</span>
+                                    </p>
+                                    <p data-zh="建議直接導航「基隆港海產樓」，現場周邊設有停車空間，建議提早抵達以利停車。" data-en="Navigate directly to Keelung Port Seafood Restaurant. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，現場周邊設有停車空間，建議提早抵達以利停車。</p>
+                                </div>
+                                <div class="border-t border-gray-200/50 pt-3">
+                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                        <i class="fa-solid fa-taxi text-[#8da399]"></i> <span data-zh="計程車 / Uber" data-en="Taxi / Uber">計程車 / Uber</span>
+                                    </p>
+                                    <p data-zh="直接輸入目的地「基隆港海產樓」即可抵達，為最便利之方式。" data-en="Enter Keelung Port Seafood Restaurant as the destination for the most convenient ride.">直接輸入目的地「<span class="no-wrap">基隆港海產樓</span>」即可抵達，為最便利之方式。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 服裝色彩建議 V-Card (著裝建議錨點 id="dress-code") -->
+            <div id="dress-code" class="v-card reveal">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                    <div>
+                        <h4 class="text-lg md:text-2xl font-bold tracking-widest" data-zh="【 服裝色彩建議 】" data-en="【 Dress Code Suggestions 】">【 服裝色彩建議 】</h4>
+                        <p class="font-eng text-gray-400 italic text-[10px] md:text-xs tracking-widest uppercase mt-1">Dress Code Suggestions</p>
+                    </div>
+                </div>
+                <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-6 md:mb-8 tracking-wider"
+                   data-zh="為了與我們宴會的莫蘭迪柔和色調相呼應，誠摯地邀請您穿著以下建議色彩的服飾與我們共襄盛舉："
+                   data-en="To harmonize with our Morandi palette, we warmly invite you to wear these suggested colors:">
+                    為了與我們宴會的莫蘭迪柔和色調相呼應，誠摯地邀請您穿著以下建議色彩的服飾與我們共襄盛舉：
+                </p>
+                
+                <!-- 色票排版 (完美對齊正圓 w-10 h-10) -->
+                <div class="grid grid-cols-5 gap-1 sm:gap-6 text-center max-w-lg mx-auto">
+                    <!-- 黑 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #2D2D2D;"></div>
+                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="黑" data-en="Black">黑</p>
+                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Black</p>
+                    </div>
+                    <!-- 白 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-stone-200 shadow-md" style="background-color: #F7F5F0;"></div>
+                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="白" data-en="White">白</p>
+                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">White</p>
+                    </div>
+                    <!-- 灰 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8D9399;"></div>
+                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="灰" data-en="Grey">灰</p>
+                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Grey</p>
+                    </div>
+                    <!-- 奶茶 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #D0B8A8;"></div>
+                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="奶茶" data-en="Oatmeal">奶茶</p>
+                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Oatmeal</p>
+                    </div>
+                    <!-- 暗紅 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8B4A4A;"></div>
+                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="暗紅" data-en="Burgundy">暗紅</p>
+                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Terracotta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-16 md:py-32 px-4 bg-white relative z-10 w-full">
+        <div class="max-w-xl mx-auto bg-white p-6 sm:p-10 md:p-16 shadow-2xl rounded-[2rem] sm:rounded-[2.5rem] relative overflow-hidden reveal">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4a373] opacity-[0.03] -mr-16 -mt-16 rounded-full"></div>
+            
+            <h3 class="text-xl md:text-3xl font-bold text-center mb-2 tracking-widest text-gray-800" data-zh="出席回函" data-en="RSVP">出席回函</h3>
+            <p class="font-eng text-center text-[#d4a373] italic mb-10 tracking-[0.3em] uppercase text-xs">Awaiting Your Reply</p>
+
+            <!-- 隱藏式 Iframe 提交技術 -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            
+            <!-- 已對接您的 Google 表單實際 formResponse 網址（移除分頁 section 後，無需 pageHistory 參數，更安全防錯！） -->
+            <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
+                <div class="space-y-8">
+                    
+                    <!-- 1. 您的大名 -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的大名 NAME *" data-en="YOUR NAME *">您的大名 <span class="font-eng uppercase">NAME</span> *</label>
+                        <input type="text" name="entry.1886153940" class="form-input text-sm md:text-base" placeholder="請輸入您的大名" required value="">
+                    </div>
+                    
+                    <!-- 2. 您的聯絡電話 -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的聯絡電話 PHONE *" data-en="YOUR PHONE *">您的聯絡電話 <span class="font-eng uppercase">PHONE</span> *</label>
+                        <input type="tel" name="entry.2029074728" class="form-input text-sm md:text-base" placeholder="請輸入聯絡電話" required value="">
+                    </div>
+                    
+                    <!-- 3. 您的Email/Line -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的Email/Line EMAIL / LINE *" data-en="YOUR EMAIL / LINE *">您的Email/Line <span class="font-eng uppercase">EMAIL / LINE</span> *</label>
+                        <input type="text" name="entry.1647990662" class="form-input text-sm md:text-base" placeholder="請輸入您的 Email 或 Line" required value="">
+                    </div>
+                    
+                    <!-- 4. 您和新人的關係是？ -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您和新人的關係是？ RELATIONSHIP *" data-en="RELATIONSHIP WITH COUPLE *">您和新人的關係是？ <span class="font-eng uppercase">RELATIONSHIP</span> *</label>
+                        <select name="entry.2044940604" class="form-input text-sm md:text-base cursor-pointer bg-transparent" required>
+                            <option value="" disabled selected data-zh="請選擇您的關係" data-en="Please select your relationship">請選擇您的關係</option>
+                            <option value="新郎親友" data-zh="新郎親友" data-en="Groom's Family/Friend">新郎親友</option>
+                            <option value="新娘親友" data-zh="新娘親友" data-en="Bride's Family/Friend">新娘親友</option>
+                            <option value="男方父母親友" data-zh="男方父母親友" data-en="Groom's Parents' Guest">男方父母親友</option>
+                            <option value="女方父母親友" data-zh="女方父母親友" data-en="Bride's Parents' Guest">女方父母親友</option>
+                            <option value="共同朋友" data-zh="共同朋友" data-en="Mutual Friend">共同朋友</option>
+                        </select>
+                    </div>
+
+                    <!-- 5. 是否可以參加婚禮呢？ -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否可以參加婚禮呢？ ATTENDANCE *" data-en="WILL YOU ATTEND? *">是否可以參加婚禮呢？ <span class="font-eng uppercase">ATTENDANCE</span> *</label>
+                        <div class="flex flex-col space-y-3">
+                            <label class="flex items-center space-x-3 cursor-pointer group">
+                                <input type="radio" name="entry.1312972387" value="我要參加！一起見證幸福時刻" class="text-[#d4a373] focus:ring-[#d4a373]" required onclick="handleAttendanceChange(true)">
+                                <span class="text-sm group-hover:text-[#d4a373] transition leading-relaxed font-sans" data-zh="我要參加！一起見證幸福時刻" data-en="Yes, I will attend! Let's celebrate.">我要參加！一起見證幸福時刻</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer group">
+                                <input type="radio" name="entry.1312972387" value="好傷心我無法出席，獻上真誠的祝福" class="text-[#d4a373] focus:ring-[#d4a373]" onclick="handleAttendanceChange(false)">
+                                <span class="text-sm group-hover:text-[#d4a373] transition leading-relaxed font-sans" data-zh="好傷心我無法出席，獻上真誠的祝福" data-en="No, I cannot attend. Sending my warmest wishes.">好傷心我無法出席，獻上真誠的祝福</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 智能顯示區塊 -->
+                    <div id="banquet_smart_fields" class="smart-field space-y-8">
+                        <div class="grid grid-cols-2 gap-4 md:gap-10">
+                            <!-- 6. 出席的「成人」人數 -->
+                            <div>
+                                <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="出席的「成人」人數 ADULTS *" data-en="NUMBER OF ADULTS *">出席的「成人」人數 <span class="font-eng uppercase">ADULTS</span> *</label>
+                                <input type="number" id="adult_guests_input" name="entry.1567260636" class="form-input text-sm" placeholder="成人人數" min="0" value="0">
+                            </div>
+                            <!-- 7. 出席的「兒童」人數 -->
+                            <div>
+                                <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="出席的「兒童」人數 CHILDREN" data-en="NUMBER OF CHILDREN">出席的「兒童」人數 <span class="font-eng uppercase">CHILDREN</span></label>
+                                <input type="number" id="child_guests_input" name="entry.1259066676" class="form-input text-sm" placeholder="兒童人數" min="0" value="0">
+                            </div>
+                        </div>
+
+                        <!-- 8. 是否需要兒童座椅？需要幾張呢？ -->
+                        <div>
+                            <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否需要兒童座椅？需要幾張呢？ HIGH CHAIR" data-en="DO YOU NEED HIGH CHAIRS? HOW MANY?">是否需要兒童座椅？需要幾張呢？ <span class="font-eng uppercase">HIGH CHAIR</span></label>
+                            <input type="text" name="entry.1887387302" class="form-input text-sm" placeholder="如需要請註明數量 (如：1張)" value="">
+                        </div>
+                        
+                        <!-- 9. 是否需要安排空位給使用輪椅? -->
+                        <div>
+                            <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要安排空位給使用輪椅? WHEELCHAIR" data-en="WHEELCHAIR SPACE NEEDED?">是否需要安排空位給使用輪椅? <span class="font-eng uppercase">WHEELCHAIR</span></label>
+                            <div class="flex space-x-12">
+                                <label class="flex items-center space-x-3 cursor-pointer group">
+                                    <input type="radio" name="entry.1717756068" value="是" class="text-[#d4a373] focus:ring-[#d4a373]">
+                                    <span class="text-sm group-hover:text-[#d4a373] transition font-sans" data-zh="是" data-en="Yes">是</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group">
+                                    <input type="radio" name="entry.1717756068" value="否" class="text-[#d4a373] focus:ring-[#d4a373]" checked>
+                                    <span class="text-sm group-hover:text-[#d4a373] transition font-sans" data-zh="否" data-en="No">否</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 10. 是否準備素食？需要幾份呢？ -->
+                        <div>
+                            <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否準備素食？需要幾份呢？ VEGETARIAN" data-en="VEGETARIAN MEALS NEEDED? HOW MANY?">是否準備素食？需要幾份呢？ <span class="font-eng uppercase">VEGETARIAN</span></label>
+                            <input type="text" name="entry.1945371672" class="form-input text-sm" placeholder="如需要請註明份數 (如：1份)" value="">
+                        </div>
+
+                        <!-- 11. 是否需要寄送紙本喜帖給您？ -->
+                        <div>
+                            <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要寄送紙本喜帖給您？ PAPER INVITATION" data-en="SEND PHYSICAL INVITATION CARD?">是否需要寄送紙本喜帖給您？ <span class="font-eng uppercase">PAPER INVITATION</span></label>
+                            <div class="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:space-x-12">
+                                <label class="flex items-center space-x-3 cursor-pointer group">
+                                    <input type="radio" name="entry.1987799018" id="invite-yes" value="是，請寄送紙本喜帖" class="text-[#d4a373] focus:ring-[#d4a373]" onclick="handleInvitationChange(true)">
+                                    <span class="text-sm group-hover:text-[#d4a373] transition font-sans" data-zh="是，請寄送紙本喜帖" data-en="Yes, please mail physical invitation">是，請寄送紙本喜帖</span>
+                                </label>
+                                <label class="flex items-center space-x-3 cursor-pointer group">
+                                    <input type="radio" name="entry.1987799018" id="invite-no" value="否，電子喜帖即可" class="text-[#d4a373] focus:ring-[#d4a373]" checked onclick="handleInvitationChange(false)">
+                                    <span class="text-sm group-hover:text-[#d4a373] transition font-sans" data-zh="否，電子喜帖即可" data-en="No, digital invitation is fine">否，電子喜帖即可</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 12. 寄送紙本喜帖收件資料 (收件人/地址/電話) -->
+                        <div id="address_smart_field" class="smart-field">
+                            <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="請提供您的收件資料（收件人/地址/電話） SHIPPING DETAILS" data-en="SHIPPING DETAILS (RECIPIENT/ADDRESS/PHONE)">請提供您的收件資料（收件人/地址/電話） <span class="font-eng uppercase">SHIPPING DETAILS</span></label>
+                            <textarea name="entry.2093466386" id="form-address-field" rows="2" class="form-input text-sm md:text-base font-sans" placeholder="請填寫：收件人、郵遞區號 + 地址、電話"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 13. 希望您給我們一些祝福.... -->
+                    <div>
+                        <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="希望您給我們一些祝福.... BLESSING" data-en="CONGRATULATION MESSAGE BLESSING">希望您給我們一些祝福.... <span class="font-eng uppercase">BLESSING</span></label>
+                        <textarea name="entry.845217517" id="form-blessing-field" rows="3" class="form-input text-sm md:text-base font-sans" placeholder="留下您的悄悄話..."></textarea>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit" class="submit-btn rounded-full text-xs md:text-sm font-bold uppercase tracking-[0.3em] w-full sm:w-auto" data-zh="發送出席回函 Submit" data-en="SUBMIT RSVP">發送出席回函 Submit</button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Success Box -->
+            <div id="success_msg" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center text-center p-6 sm:p-10 z-20">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-[#d4a373] rounded-full flex items-center justify-center text-white mb-6 sm:mb-8 shadow-lg">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h4 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-gray-800 tracking-widest" data-zh="送出成功！" data-en="Submitted successfully!">送出成功！</h4>
+                <p class="text-gray-400 leading-loose px-4 text-xs sm:text-sm font-sans" data-zh="親愛的嘉賓，我們已收到您的出席回函。極度期待與您在12月12日見面！" data-en="Dear Guest, we have received your RSVP. We are looking forward to celebrating with you on December 12th!">
+                    親愛的嘉賓，我們已收到您的出席回函。<br>
+                    極度期待與您在12月12日見面！
+                </p>
+                <button onclick="window.location.reload()" class="mt-8 sm:mt-12 text-[10px] tracking-[0.4em] text-[#d4a373] uppercase border-b border-[#d4a373] pb-1 font-bold font-sans" data-zh="關閉視窗 / CLOSE" data-en="CLOSE">關閉視窗 / CLOSE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 md:py-16 bg-[#8da399] text-white text-center relative z-10 w-full">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- 頁尾姓名：手機上保持單行 -->
+            <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs md:text-sm opacity-90 uppercase mb-3">Ou yang Po-yen & Chen Yi han</p>
+            <p class="text-[9px] tracking-widest opacity-40 uppercase">© 2026 Ou yang Po-yen & Chen Yi han. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 相本 Lightbox 燈箱效果 (點擊放大) -->
+    <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold">&times;</button>
+        <img id="lightbox-img" src="" alt="Zoomed view" class="max-w-full max-h-full p-4 rounded-3xl object-contain transform scale-95 transition-transform duration-300">
+    </div>
+
+    <script>
+        // --- Countdown Timer ---
+        // 民國 115 年 12 月 12 日 即西元 2026 年 12 月 12 日 18:00pm
+        const targetDate = new Date("Dec 12, 2026 18:00:00").getTime();
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<p class='font-eng text-xl text-[#d4a373] tracking-[0.4em] uppercase font-bold'>The Banquet Begins!</p>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        };
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- UI Logic: Accordion (已棄用，保留供潛在相容性，但功能完全直接展示) ---
+        function toggleAccordion(btn) {
+            btn.classList.toggle('active');
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('svg');
+            
+            if (btn.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = "1";
+                content.style.paddingTop = "1.5rem";
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.style.maxHeight = "0px";
+                content.style.opacity = "0";
+                content.style.paddingTop = "0px";
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // --- UI Logic: Smart Fields ---
+        function handleAttendanceChange(isAttending) {
+            var target = document.getElementById('banquet_smart_fields');
+            var adultInput = document.getElementById('adult_guests_input');
+            
+            if (isAttending) {
+                target.classList.add('active-field');
+                adultInput.setAttribute('required', 'required');
+                if (parseInt(adultInput.value) === 0) {
+                    adultInput.value = "1"; // 當選擇參加時，預設人數調整為1
+                }
+            } else {
+                target.classList.remove('active-field');
+                adultInput.removeAttribute('required');
+                adultInput.value = "0";
+                document.getElementById('child_guests_input').value = "0";
+                // 若不克出席，自動將紙本喜帖改為否，收件資料也折疊
+                handleInvitationChange(false);
+                document.getElementById('invite-no').checked = true;
+            }
+        }
+
+        // 當需要寄送紙本喜帖時，滑順展示收件人/地址/電話輸入框
+        function handleInvitationChange(needsPaper) {
+            var target = document.getElementById('address_smart_field');
+            if (needsPaper) {
+                target.classList.add('active-field');
+            } else {
+                target.classList.remove('active-field');
+            }
+        }
+
+        // --- Background Music Control ---
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        const musicTip = document.getElementById('music-tip');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().then(() => {
+                    musicIcon.className = 'fa-solid fa-compact-disc text-lg';
+                    musicBtn.classList.add('spinning');
+                    if (musicTip) musicTip.innerText = "背景音樂播放中 🎵";
+                }).catch(e => {
+                    console.log("Audio play blocked by browser. User interaction required.");
+                });
+            } else {
+                music.pause();
+                musicIcon.className = 'fa-solid fa-music text-lg';
+                musicBtn.classList.remove('spinning');
+                if (musicTip) musicTip.innerText = "背景音樂已暫停 ⏸️";
+            }
+        }
+
+        // 智能自動播放：嘗試在使用者進入頁面後初次互動（點擊/觸控）時立即播放音樂
+        // 由於瀏覽器隱私安全策略，當點擊或滑動螢幕時自動觸發
+        function autoPlayOnFirstInteraction() {
+            music.play().then(() => {
+                musicIcon.className = 'fa-solid fa-compact-disc text-lg';
+                musicBtn.classList.add('spinning');
+                if (musicTip) musicTip.innerText = "背景音樂播放中 🎵";
+                document.removeEventListener('click', autoPlayOnFirstInteraction);
+                document.removeEventListener('touchstart', autoPlayOnFirstInteraction);
+            }).catch(e => {
+                console.log("Autoplay waiting for user interaction on music button.");
+            });
+        }
+        document.addEventListener('click', autoPlayOnFirstInteraction);
+        document.addEventListener('touchstart', autoPlayOnFirstInteraction);
+
+        // --- Form Submission Logic ---
+        var submitted = false;
+        
+        // 監聽表單的 submit 事件，在使用者點選送出時，將 submitted 標記設為 true
+        document.getElementById('weddingForm').addEventListener('submit', function() {
+            submitted = true;
+        });
+
+        // 當隱藏的 Iframe 載入完成時，如果是使用者手動送出，才呼叫 showSuccess()，徹底避免載入錯誤與干擾
+        document.getElementById('hidden_iframe').addEventListener('load', function() {
+            if (submitted) {
+                showSuccess();
+            }
+        });
+
+        function showSuccess() {
+            setTimeout(() => {
+                document.getElementById('success_msg').classList.remove('hidden');
+                document.getElementById('rsvp').scrollIntoView({behavior: 'smooth'});
+            }, 500);
+        }
+
+        // --- 🌸 Canvas Petals Animation (莫蘭迪色調仙氣漂落) ---
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const petalColors = ['#e6c8a2', '#f3ebd4', '#a1b3a9', '#cedcd3']; // Morandi gold and sage green tints
+        const petals = [];
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * -height;
+                this.size = Math.random() * 8 + 6;
+                this.speedX = Math.random() * 1.5 - 0.5;
+                this.speedY = Math.random() * 1 + 0.8;
+                this.color = petalColors[Math.floor(Math.random() * petalColors.length)];
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.angle = Math.random() * Math.PI * 2;
+                this.spinSpeed = Math.random() * 0.02 - 0.01;
+            }
+
+            update() {
+                this.x += this.speedX + Math.sin(this.angle) * 0.5;
+                this.y += this.speedY;
+                this.angle += this.spinSpeed;
+
+                if (this.y > height + 20) {
+                    this.y = -20;
+                    this.x = Math.random() * width;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 35; i++) {
+            petals.push(new Petal());
+        }
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, width, height);
+            petals.forEach(petal => {
+                petal.update();
+                petal.draw();
+            });
+            requestAnimationFrame(animatePetals);
+        }
+        
+        window.onload = function() {
+            animatePetals();
+        };
+
+        // --- ✨ Scroll Reveal Logic ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const checkReveal = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            revealElements.forEach(el => {
+                const elTop = el.getBoundingClientRect().top;
+                if (elTop < triggerBottom) {
+                    el.classList.add('active');
+                }
+            });
+        };
+        window.addEventListener('scroll', checkReveal);
+        // 初始化時先執行一次
+        checkReveal();
+
+        // --- 🌐 Bilingual Language Switcher Logic (雙語無痛切換) ---
+        let currentLanguage = 'zh';
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            
+            // 獲取所有具有 data-zh 屬性的元素進行翻譯切換
+            const translatableElements = document.querySelectorAll('[data-zh]');
+            translatableElements.forEach(el => {
+                const targetText = currentLanguage === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+                el.innerHTML = targetText;
+            });
+
+            // 針對表單輸入框與 Placeholder 進行翻譯更新
+            const addressField = document.getElementById('form-address-field');
+            const blessingField = document.getElementById('form-blessing-field');
+            if (addressField) {
+                addressField.placeholder = currentLanguage === 'zh' ? '請填寫：收件人、郵遞區號 + 地址、電話' : 'Name, Zip Code + Address, Phone';
+            }
+            if (blessingField) {
+                blessingField.placeholder = currentLanguage === 'zh' ? '留下您的悄悄話...' : 'Leave your wishes here...';
+            }
+
+            // 更新按鈕上的顯示文字
+            const langBtn = document.getElementById('lang-toggle-btn');
+            langBtn.innerText = currentLanguage === 'zh' ? 'EN' : '繁中';
+
+            // 更新頁面 Title 屬性
+            document.title = currentLanguage === 'zh' ? 'Ou yang Po-yen & Chen Yi han 婚禮邀請函' : 'Ou yang Po-yen & Chen Yi han Wedding Invitation';
+        }
+    </script>
+</body>
+</html>
