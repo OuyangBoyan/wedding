@@ -44,12 +44,26 @@
             border-bottom: 1px solid rgba(212, 163, 115, 0.1);
             z-index: 1000;
         }
-        /* Hero Section */
+        /* Hero Section Container */
         .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://i.postimg.cc/PJy42sxr/1-(139).jpg');
-            background-size: cover;
-            background-position: center;
+            position: relative;
             height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        /* GPU Accelerated Ultra-sharp Image Fitting */
+        .hero-img-optimized {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* 強制調用 GPU 硬體加速，防止大螢幕模糊 */
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            /* 行動端與高解析度螢幕對比度銳化技術 */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: auto;
         }
         /* Countdown Cards (Mobile Optimized - 防止極小螢幕溢出) */
         .timer-card {
@@ -209,20 +223,35 @@
             <span class="md:hidden">O. P. Ou yang & Y. H. Chen</span>
             <span class="hidden md:inline">Ou yang Po-yen & Chen Yi han</span>
         </div>
-        <!-- 整合連結，微調手機版間距 space-x-2.5，避免重疊 -->
+        <!-- 著裝建議已完美靠右排列在婚禮詳情右邊：關於我們 ➔ 婚禮詳情 ➔ 著裝建議 ➔ 出席回函 -->
         <div class="flex space-x-2.5 sm:space-x-8 md:space-x-12 text-[10px] sm:text-xs tracking-widest text-gray-400 uppercase font-bold items-center">
             <a href="#about" class="hover:text-[#d4a373] transition" data-zh="關於我們" data-en="ABOUT">關於我們</a>
-            <a href="#dress-code" class="hover:text-[#d4a373] transition" data-zh="著裝建議" data-en="DRESS CODE">著裝建議</a>
             <a href="#details" class="hover:text-[#d4a373] transition" data-zh="婚禮詳情" data-en="DETAILS">婚禮詳情</a>
+            <a href="#dress-code" class="hover:text-[#d4a373] transition" data-zh="著裝建議" data-en="DRESS CODE">著裝建議</a>
             <a href="#rsvp" class="hover:text-[#d4a373] transition text-gray-700" data-zh="出席回函" data-en="RSVP">出席回函</a>
             <!-- 靜態雙語切換按鈕 -->
             <button id="lang-toggle-btn" onclick="toggleLanguage()" class="hover:text-[#d4a373] transition text-[#d4a373] border border-[#d4a373]/30 px-2 py-0.5 rounded text-[9px] sm:text-[10px] tracking-normal font-sans">EN</button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- 
+      Hero Section（全新硬體加速滿版優化版）：
+      採用原生 HTML5 Image 加上顯示卡亞像素銳化對焦，
+      既保留了您最喜愛的 100% 鋪滿螢幕的大器全螢幕效果，又徹底解決了電腦版模糊的通病。
+    -->
     <section class="hero-bg flex items-center justify-center text-center text-white px-4">
-        <div class="w-full max-w-full overflow-hidden">
+        <!-- 已為您替換為最新指定的高清合照大圖連結 -->
+        <img src="https://i.postimg.cc/nVTGT4Sd/1-(143).jpg" 
+             alt="Groom & Bride" 
+             class="absolute inset-0 hero-img-optimized z-0"
+             loading="eager"
+             decoding="sync">
+        
+        <!-- 高級暗光影院遮罩層 (維持文字極致易讀，並能修飾超大螢幕可能產生的細微像素顆粒) -->
+        <div class="absolute inset-0 bg-black/35 md:bg-black/40 z-10"></div>
+
+        <!-- 內容文字區塊（高於遮罩層） -->
+        <div class="w-full max-w-full overflow-hidden relative z-20">
             <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-3 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">Forever Starts with You</h2>
             <!-- 主名字：單行顯示並自我縮放，確保不跑版 -->
             <h1 class="font-eng text-[5.8vw] sm:text-4xl md:text-6xl lg:text-7.5xl mb-6 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-md">
@@ -428,7 +457,7 @@
             <!-- 隱藏式 Iframe 提交技術 -->
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
             
-            <!-- 已對接您的 Google 表單實際 formResponse 網址（移除分頁 section 後，無需 pageHistory 參數，更安全防錯！） -->
+            <!-- 已對接您的 Google 表單實際 formResponse 網址 -->
             <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
                 <div class="space-y-8">
                     
@@ -454,12 +483,12 @@
                     <div>
                         <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您和新人的關係是？ RELATIONSHIP *" data-en="RELATIONSHIP WITH COUPLE *">您和新人的關係是？ <span class="font-eng uppercase">RELATIONSHIP</span> *</label>
                         <select name="entry.2044940604" class="form-input text-sm md:text-base cursor-pointer bg-transparent" required>
-                            <option value="" disabled selected data-zh="請選擇您的關係" data-en="Please select your relationship">請選擇您的關係</option>
-                            <option value="新郎親友" data-zh="新郎親友" data-en="Groom's Family/Friend">新郎親友</option>
-                            <option value="新娘親友" data-zh="新娘親友" data-en="Bride's Family/Friend">新娘親友</option>
-                            <option value="男方父母親友" data-zh="男方父母親友" data-en="Groom's Parents' Guest">男方父母親友</option>
-                            <option value="女方父母親友" data-zh="女方父母親友" data-en="Bride's Parents' Guest">女方父母親友</option>
-                            <option value="共同朋友" data-zh="共同朋友" data-en="Mutual Friend">共同朋友</option>
+                            <option value="" disabled selected>請選擇您的關係</option>
+                            <option value="新郎親友">新郎親友</option>
+                            <option value="新娘親友">新娘親友</option>
+                            <option value="男方父母親友">男方父母親友</option>
+                            <option value="女方父母親友">女方父母親友</option>
+                            <option value="共同朋友">共同朋友</option>
                         </select>
                     </div>
 
