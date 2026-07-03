@@ -304,6 +304,43 @@
         </div>
     </section>
 
+    <!-- 🌸 方案四：常駐型「最珍貴的風景 (Our Sweet Blessing)」法式拍立得相簿區塊 -->
+    <section class="py-12 md:py-20 px-4 bg-[#fdfaf7] relative z-10 w-full overflow-hidden border-t border-stone-100">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">Our Sweet Blessing</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 md:gap-16 justify-items-center">
+                <!-- 第一張拍立得：1fc21565-8801-4c31-8f95-3cf33fdb5afe.png -->
+                <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
+                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform -rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-1.png')">
+                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
+                            <!-- 預設讀取同目錄下的相對路徑，完美無縫！ -->
+                            <img src="daughter-1.png" alt="Our sweet pikmin baby" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-4 px-2">
+                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「精靈般降臨，溫暖了日常」" data-en="&ldquo;Like an elf descending, warming our days&rdquo;">「精靈般降臨，溫暖了日常」</p>
+                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">Our sweet little fairy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二張拍立得：S__8306694_0.jpg -->
+                <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
+                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-2.jpg')">
+                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
+                            <!-- 預設讀取同目錄下的相對路徑，完美無縫！ -->
+                            <img src="daughter-2.jpg" alt="Our sleeping bunny angel" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mt-4 px-2">
+                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「最溫柔的夢境與未來」" data-en="&ldquo;Our most gentle dream & future&rdquo;">「最溫柔的夢境與未來」</p>
+                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">Sleeping like an angel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Details Section -->
     <section id="details" class="py-16 md:py-32 px-4 sm:px-6 bg-[#fdfaf7] relative z-10 w-full">
         <div class="max-w-3xl mx-auto">
@@ -387,7 +424,7 @@
                                     </p>
                                     <p data-zh="建議直接導航「基隆港海產樓」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。" data-en="Navigate directly to Keelung Port Seafood Restaurant. After exiting the Keelung end of the highway, turn right onto Xin 2nd Rd. and drive straight for about 800 meters to reach the venue. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。</p>
                                 </div>
-                                <!-- 5. 計程車 / Uber -->
+                                <!-- 5. 一般計程車 / Uber -->
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-taxi text-[#8da399]"></i> <span data-zh="計程車 / Uber" data-en="Taxi / Uber">計程車 / Uber</span>
@@ -674,6 +711,7 @@
 
     <!-- 相本 Lightbox 燈箱效果 (點擊放大) -->
     <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- 修正點選黑色背景或關閉按鈕，皆能優雅折疊大圖 -->
         <button class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold">&times;</button>
         <img id="lightbox-img" src="" alt="Zoomed view" class="max-w-full max-h-full p-4 rounded-3xl object-contain transform scale-95 transition-transform duration-300">
     </div>
@@ -928,6 +966,26 @@
 
             // 更新頁面 Title 屬性
             document.title = currentLanguage === 'zh' ? 'Ou yang Po-yen & Chen Yi han 婚禮邀請函' : 'Ou yang Po-yen & Chen Yi han Wedding Invitation';
+        }
+
+        // --- 🔍 Lightbox Logic ---
+        function openLightbox(imgSrc) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            img.src = imgSrc;
+            modal.classList.remove('pointer-events-none');
+            modal.classList.add('opacity-100');
+            img.classList.remove('scale-95');
+            img.classList.add('scale-100');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            modal.classList.add('pointer-events-none');
+            modal.classList.remove('opacity-100');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
         }
     </script>
 </body>
