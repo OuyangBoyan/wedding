@@ -47,22 +47,22 @@
         /* Hero Section Container */
         .hero-bg {
             position: relative;
-            min-height: 100vh;
+            height: 100vh;
             width: 100%;
             overflow: hidden;
-            background-color: #1a1816;
         }
-        .hero-ambient-bg {
-            position: absolute;
-            inset: 0;
+        /* GPU Accelerated Ultra-sharp Image Fitting */
+        .hero-img-optimized {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(30px);
-            opacity: 0.4;
-            transform: scale(1.15);
-            z-index: 0;
+            object-position: center top;
             will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: auto;
         }
         /* Countdown Cards (Mobile Optimized - 防止極小螢幕溢出) */
         .timer-card {
@@ -233,37 +233,25 @@
         </div>
     </nav>
 
-    <!-- 
-      Hero Section（完整無裁切高級版）：
-      採用「微光大氣背景 + 100% 完整合照展演」，確保新郎與新娘在手機與電腦版皆完整呈現。
-    -->
-    <section class="hero-bg flex flex-col items-center justify-between pt-20 pb-10 sm:pt-24 sm:pb-14 px-4 text-center text-white relative">
-        <!-- 景深氛圍背景 (讓全螢幕保持莫蘭迪柔和滿版效果) -->
-        <img src="cover.jpg" alt="" class="hero-ambient-bg" decoding="async">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-[#fdfaf7] z-10"></div>
+    <!-- Hero Section -->
+    <section class="hero-bg flex items-center justify-center text-center text-white px-4">
+        <img src="cover.jpg" 
+             alt="Groom & Bride" 
+             class="absolute inset-0 hero-img-optimized z-0"
+             loading="eager"
+             decoding="sync">
+        
+        <!-- 高級暗光影院遮罩層 -->
+        <div class="absolute inset-0 bg-black/35 md:bg-black/40 z-10"></div>
 
-        <!-- 頂部標題區塊 -->
-        <div class="w-full max-w-4xl relative z-20 pt-2 sm:pt-4">
-            <h2 class="font-eng italic text-xs sm:text-sm md:text-lg mb-2 sm:mb-3 opacity-90 tracking-widest uppercase text-white/90 drop-shadow animate-pulse">Forever Starts with You</h2>
-            <h1 class="font-eng text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-snug tracking-wide drop-shadow-md">
-                Ou yang Po-yen <span class="text-xl sm:text-2xl md:text-3xl italic text-[#d4a373]">&</span> Chen Yi han
+        <!-- 內容文字區塊（高於遮罩層） -->
+        <div class="w-full max-w-full overflow-hidden relative z-20">
+            <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-3 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">Forever Starts with You</h2>
+            <!-- 主名字：單行顯示並自我縮放，確保不跑版 -->
+            <h1 class="font-eng text-[5.8vw] sm:text-4xl md:text-6xl lg:text-7.5xl mb-6 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-md">
+                Ou yang Po-yen <span class="text-[4vw] sm:text-2xl md:text-4xl italic text-[#d4a373]">&</span> Chen Yi han
             </h1>
-        </div>
-
-        <!-- 中央合照圖片區塊 (100% 完整無裁切呈現新郎與新娘) -->
-        <div class="relative z-20 my-3 sm:my-5 w-full max-w-4xl flex justify-center items-center">
-            <div class="p-1.5 sm:p-2 bg-white/10 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/25 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] transform hover:scale-[1.01] transition-all duration-500 max-w-full">
-                <img src="cover.jpg" 
-                     alt="Ou yang Po-yen & Chen Yi han" 
-                     class="w-auto h-auto max-h-[48vh] sm:max-h-[58vh] md:max-h-[66vh] max-w-full rounded-xl sm:rounded-2xl object-contain block mx-auto"
-                     loading="eager"
-                     decoding="sync">
-            </div>
-        </div>
-
-        <!-- 底部標語 -->
-        <div class="w-full max-w-4xl relative z-20 pb-2">
-            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light text-[#e2be9b] drop-shadow" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
+            <p class="text-xs sm:text-sm md:text-xl tracking-[0.4em] font-light opacity-90 text-brand-gold" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
         </div>
     </section>
 
