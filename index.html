@@ -56,34 +56,31 @@
             border-bottom: 1px solid rgba(212, 163, 115, 0.15);
             z-index: 1000;
         }
-        /* Hero Section Container - Adjusted height for mobile to minimize horizontal photo cropping */
+        /* Hero Section Container - Flexible height ensuring 100% uncropped display */
         .hero-bg {
             position: relative;
-            height: 85vh;
-            height: 85dvh;
+            min-height: 85vh;
+            min-height: 85dvh;
             width: 100%;
             overflow: hidden;
         }
         @media (min-width: 768px) {
             .hero-bg {
-                height: 100vh;
-                height: 100dvh;
+                min-height: 100vh;
+                min-height: 100dvh;
             }
         }
-        /* GPU Accelerated Sharp Image Fitting for Horizontal Photos */
+        /* GPU Accelerated Sharp Image Fitting - Guaranteed 100% Uncropped on ALL Devices */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
+            object-fit: contain !important;
+            object-position: center center;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: auto;
-        }
-        @media (min-width: 768px) {
-            .hero-img-optimized {
-                object-position: center center;
-            }
         }
         /* Countdown Cards */
         .timer-card {
@@ -251,43 +248,43 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg flex items-end md:items-center justify-center text-center text-white pb-8 md:pb-0 bg-stone-950">
-        <!-- Ambient Blurred Background for Mobile Fill -->
+    <section class="hero-bg flex items-end justify-center text-center text-white pb-6 sm:pb-8 md:pb-12 bg-stone-950 pt-16">
+        <!-- Ambient Blurred Background for Full Viewport Ambient Lighting -->
         <img src="cover.jpg" 
              alt="" 
-             class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 scale-110 z-0 pointer-events-none"
+             class="absolute inset-0 w-full h-full object-cover blur-3xl opacity-35 scale-125 z-0 pointer-events-none"
              aria-hidden="true">
 
-        <!-- Hero Main Photo: Mobile uses 'object-contain' (100% uncropped zero clipping!), Desktop uses 'object-cover' -->
-        <div class="absolute inset-0 flex items-center justify-center z-0">
+        <!-- Hero Main Photo: 100% Uncropped Zero-Clipping on both Mobile & Desktop -->
+        <div class="absolute inset-0 flex items-center justify-center z-0 p-2 sm:p-4 md:p-8">
             <img src="cover.jpg" 
                  alt="Ou yang Po-yen & Chen Yi han" 
-                 class="w-full h-full object-contain md:object-cover hero-img-optimized"
+                 class="w-full h-full hero-img-optimized"
                  loading="eager"
                  decoding="async">
         </div>
         
-        <!-- Dark Gradient Overlay for optimal text contrast -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/85 z-10 pointer-events-none"></div>
+        <!-- Soft Gradient Overlay for optimal text readability without obscuring central photo subjects -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/85 z-10 pointer-events-none"></div>
 
         <!-- Main Title Area -->
-        <div class="w-full max-w-full overflow-hidden relative z-20 px-4 mb-4 md:mb-0">
-            <h2 class="font-eng italic text-sm sm:text-base md:text-xl mb-3 opacity-90 tracking-[0.3em] uppercase text-white shadow-sm animate-pulse">
+        <div class="w-full max-w-full overflow-hidden relative z-20 px-4 mb-2 sm:mb-4">
+            <h2 class="font-eng italic text-xs sm:text-base md:text-xl mb-2 sm:mb-3 opacity-90 tracking-[0.3em] uppercase text-white shadow-sm animate-pulse">
                 Forever Starts with You
             </h2>
             
             <!-- 中文姓名主標題 (主要焦點) -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-2 font-bold tracking-[0.15em] text-white drop-shadow-md" data-zh="歐陽伯彥 & 陳宜函" data-en="Po-yen & Yi-han">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-1 sm:mb-2 font-bold tracking-[0.15em] text-white drop-shadow-md" data-zh="歐陽伯彥 & 陳宜函" data-en="Po-yen & Yi-han">
                 歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
             </h1>
             
-            <!-- 英文姓名副標題 (調整為精緻輔助字級，增加層次感) -->
-            <p class="font-eng text-base sm:text-xl md:text-2xl lg:text-3xl mb-6 font-light tracking-[0.12em] text-stone-200/90 drop-shadow">
+            <!-- 英文姓名副標題 -->
+            <p class="font-eng text-sm sm:text-xl md:text-2xl lg:text-3xl mb-3 sm:mb-6 font-light tracking-[0.12em] text-stone-200/90 drop-shadow">
                 Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
             </p>
             
             <!-- Slogan 文案 -->
-            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light opacity-95 text-[#d4a373]" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
+            <p class="text-[11px] sm:text-sm md:text-lg tracking-[0.35em] sm:tracking-[0.4em] font-light opacity-95 text-[#d4a373]" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
                 伯此一生，函你同行
             </p>
         </div>
