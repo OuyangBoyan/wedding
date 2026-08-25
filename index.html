@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>歐陽伯彥 & 陳宜函 婚禮邀請函 | Wedding Invitation</title>
     
+    <!-- Preconnect for fast loading & performance optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
     <!-- Open Graph Tags for Social Media (LINE, Facebook, Messenger 預覽卡片) -->
     <meta property="og:title" content="歐陽伯彥 & 陳宜函 婚禮邀請函">
     <meta property="og:description" content="誠摯邀請您參加我們的婚禮晚宴，見證我們的幸福時刻！">
     <meta property="og:type" content="website">
     <meta property="og:image" content="cover.jpg">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts with font-display: swap for fast text rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;1,400&family=Noto+Serif+TC:wght=300;500;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS with defer -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- FontAwesome Icons with async load -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <style>
         :root {
@@ -53,25 +56,30 @@
             border-bottom: 1px solid rgba(212, 163, 115, 0.15);
             z-index: 1000;
         }
-        /* Hero Section Container */
+        /* Hero Section Container - Adjusted height for mobile to minimize horizontal photo cropping */
         .hero-bg {
             position: relative;
-            height: 100vh;
-            height: 100dvh;
+            height: 85vh;
+            height: 85dvh;
             width: 100%;
             overflow: hidden;
+        }
+        @media (min-width: 768px) {
+            .hero-bg {
+                height: 100vh;
+                height: 100dvh;
+            }
         }
         /* GPU Accelerated Sharp Image Fitting for Horizontal Photos */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 30%;
+            object-position: center center;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
             image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
             image-rendering: auto;
         }
         @media (min-width: 768px) {
@@ -245,16 +253,16 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg flex items-center justify-center text-center text-white px-4">
+    <section class="hero-bg flex items-center justify-center text-center text-white px-4 bg-stone-900">
         <img src="cover.jpg" 
              alt="Ou yang Po-yen & Chen Yi han" 
              class="absolute inset-0 hero-img-optimized z-0"
              loading="eager"
-             decoding="sync"
+             decoding="async"
              onerror="this.onerror=null; this.src='https://i.postimg.cc/nVTGT4Sd/1-(143).jpg';">
         
         <!-- Dark Gradient Overlay for optimal text contrast -->
-        <div class="absolute inset-0 bg-black/40 md:bg-black/45 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60 z-10"></div>
 
         <!-- Main Title Area -->
         <div class="w-full max-w-full overflow-hidden relative z-20 px-4">
