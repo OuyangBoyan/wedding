@@ -43,7 +43,7 @@
             z-index: 1000;
         }
         
-        /* Hero Section Container (100dvh full coverage) */
+        /* Hero Section Container (100dvh 全螢幕滿版且消除黑邊) */
         .hero-container {
             position: relative;
             width: 100%;
@@ -53,7 +53,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            background-color: #18261a; /* Matches forest green foliage in cover photo */
+            background-color: #19271c; /* 與照片綠植邊緣精準對應的莫蘭迪墨綠色 */
             overflow: hidden;
         }
 
@@ -71,8 +71,11 @@
         .hero-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ensures 100% of groom, bride, and rings are visible without cropping on mobile */
+            object-fit: contain; /* 手機版 100% 完整展現新郎、新娘與婚戒，零裁切 */
             object-position: center;
+            /* 邊緣漸層羽化：讓照片上下自然融入墨綠背景，徹底消除硬死黑框 */
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -82,8 +85,10 @@
 
         @media (min-width: 768px) {
             .hero-img {
-                object-fit: cover; /* On wider screens, fills entire container smoothly */
+                object-fit: cover; /* 電腦寬螢幕滿版鋪滿 */
                 object-position: center 25%;
+                -webkit-mask-image: none;
+                mask-image: none;
             }
         }
 
@@ -262,15 +267,15 @@
                  decoding="sync">
         </div>
         
-        <!-- 上下雙層優雅光影遮罩（提高字體對比與視覺感） -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-transparent to-black/70 z-10 pointer-events-none"></div>
+        <!-- 光影與字體對比強化遮罩 -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 z-10 pointer-events-none"></div>
 
-        <!-- 頂部副標題 -->
+        <!-- 頂部副標題（文字大小與字型響應式對齊） -->
         <div class="w-full text-center relative z-20 pt-10 sm:pt-14">
-            <h2 class="font-eng italic text-xs sm:text-sm md:text-xl tracking-[0.3em] uppercase text-white/90 drop-shadow animate-pulse">Forever Starts with You</h2>
+            <h2 class="font-eng italic text-xs sm:text-base md:text-xl tracking-[0.3em] uppercase text-white/90 drop-shadow animate-pulse">Forever Starts with You</h2>
         </div>
 
-        <!-- 底部主姓名與浪漫詩句（使用 inline-block 保護英文名字在手機與網頁版完美對齊不亂跳） -->
+        <!-- 底部主姓名與浪漫詩句（統一與網頁版相同的文字比例與質感，絕不跑版） -->
         <div class="w-full text-center relative z-20 pb-6 sm:pb-10 px-2">
             <h1 class="font-eng text-2xl sm:text-4xl md:text-5xl lg:text-6.5xl mb-3 font-light leading-tight text-white drop-shadow-lg tracking-wider">
                 <span class="inline-block">Ou yang Po-yen</span>
