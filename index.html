@@ -54,6 +54,16 @@
             justify-content: space-between;
             align-items: center;
             background-color: #19271c; /* 與照片綠植邊緣精準對應的莫蘭迪墨綠色 */
+        /* Hero Section Container (100dvh 全螢幕滿版) */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 100dvh;
+            min-height: 560px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             overflow: hidden;
         }
 
@@ -62,29 +72,19 @@
             inset: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             z-index: 0;
         }
 
         .hero-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 手機版 100% 完整展現新郎、新娘與婚戒，零裁切 */
-            object-position: center;
+            object-fit: cover; /* 手機與電腦版均 100% 滿版全螢幕鋪滿，完全消除上下黑邊 */
+            object-position: center 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
-        }
-
-        @media (min-width: 768px) {
-            .hero-img {
-                object-fit: cover; /* 電腦寬螢幕滿版鋪滿 */
-                object-position: center 25%;
-            }
         }
 
         /* Countdown Cards */
@@ -263,19 +263,17 @@
         </div>
         
         <!-- 光影與字體對比強化遮罩 -->
-        <div class="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-black/35 z-10 pointer-events-none"></div>
 
-        <!-- 頂部副標題（文字大小與字型響應式對齊） -->
-        <div class="w-full text-center relative z-20 pt-10 sm:pt-14">
+        <!-- 頂部副標題 -->
+        <div class="w-full text-center relative z-20 pt-12 sm:pt-16">
             <h2 class="font-eng italic text-xs sm:text-base md:text-xl tracking-[0.3em] uppercase text-white/90 drop-shadow animate-pulse">Forever Starts with You</h2>
         </div>
 
-        <!-- 底部主姓名與浪漫詩句（修正手機版溢出跑版，與網頁版保持精細質感） -->
-        <div class="w-full text-center relative z-20 pb-6 sm:pb-10 px-2">
-            <h1 class="font-eng text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-3 font-light leading-tight text-white drop-shadow-lg tracking-wider">
-                <span class="inline-block">Ou yang Po-yen</span>
-                <span class="text-[#d4a373] italic mx-1 sm:mx-2">&</span>
-                <span class="inline-block">Chen Yi han</span>
+        <!-- 底部主姓名與浪漫詩句（手機版與網頁版排版 100% 一致：文字直接疊加於照片上、單行大氣展示） -->
+        <div class="w-full text-center relative z-20 pb-10 sm:pb-14 px-2">
+            <h1 class="font-eng text-[4.2vw] sm:text-3xl md:text-5xl lg:text-6xl mb-3 font-light leading-tight text-white drop-shadow-lg tracking-wider whitespace-nowrap">
+                Ou yang Po-yen <span class="text-[#d4a373] italic mx-1 sm:mx-2">&</span> Chen Yi han
             </h1>
             <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light text-[#e6c8a2] drop-shadow" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
         </div>
