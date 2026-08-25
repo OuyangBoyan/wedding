@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>歐陽伯彥 & 陳宜函 婚禮邀請函 | Wedding Invitation</title>
+    <title>Ou yang Po-yen & Chen Yi han 婚禮邀請函</title>
     
-    <!-- Preconnect for fast loading & performance optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
-    <!-- Open Graph Tags for Social Media (LINE, Facebook, Messenger 預覽卡片) -->
-    <meta property="og:title" content="歐陽伯彥 & 陳宜函 婚禮邀請函">
-    <meta property="og:description" content="誠摯邀請您參加我們的婚禮晚宴，見證我們的幸福時刻！">
+    <!-- Open Graph / LINE / FB 社群分享卡片標籤 -->
     <meta property="og:type" content="website">
+    <meta property="og:title" content="Ou yang Po-yen & Chen Yi han 婚禮邀請函">
+    <meta property="og:description" content="伯此一生，函你同行。誠摯邀請您參與我們的婚禮晚宴！">
     <meta property="og:image" content="cover.jpg">
 
-    <!-- Fonts with font-display: swap for fast text rendering -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;1,400&family=Noto+Serif+TC:wght=300;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS with defer -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    
-    <!-- FontAwesome Icons with async load -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Elegant Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -48,46 +43,20 @@
             white-space: nowrap !important;
             display: inline-block;
         }
-        /* Frosted Glass Navbar */
         .glass-nav {
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 163, 115, 0.15);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.1);
             z-index: 1000;
         }
-        /* Hero Section Container - Adaptive layout with zero cropping & zero empty space */
         .hero-bg {
             position: relative;
+            height: 100dvh;
             width: 100%;
             overflow: hidden;
-            background-color: #0c0a09;
+            background-color: #1a2e1e;
         }
-        @media (min-width: 768px) {
-            .hero-bg {
-                min-height: 100vh;
-                min-height: 100dvh;
-                display: flex;
-                align-items: flex-end;
-                justify-content: center;
-            }
-        }
-        .hero-img-optimized {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            will-change: transform;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-        @media (min-width: 768px) {
-            .hero-img-optimized {
-                height: 100%;
-                object-fit: cover;
-            }
-        }
-        /* Countdown Cards */
         .timer-card {
             background: var(--soft-white);
             border-radius: 12px;
@@ -127,7 +96,6 @@
                 margin: 0 15px;
             }
         }
-        /* V-Card Style */
         .v-card {
             background: white;
             border-left: 4px solid var(--morandi-gold);
@@ -142,7 +110,6 @@
                 margin-bottom: 2rem;
             }
         }
-        /* Smart Fields Animation */
         .smart-field {
             max-height: 0;
             overflow: hidden;
@@ -154,7 +121,6 @@
             opacity: 1;
             margin-top: 1.5rem;
         }
-        /* Form Styling */
         .form-input {
             border: none;
             border-bottom: 1px solid #e2e2e2;
@@ -176,10 +142,6 @@
             letter-spacing: 3px;
             transition: all 0.4s;
             box-shadow: 0 10px 20px -10px rgba(212, 163, 115, 0.5);
-        }
-        .submit-btn:hover {
-            background-color: #c39263;
-            box-shadow: 0 12px 25px -8px rgba(212, 163, 115, 0.7);
         }
         .shimmer {
             background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
@@ -223,21 +185,20 @@
 </head>
 <body class="w-full">
 
-    <!-- Canvas for Floating Petals -->
     <canvas id="petal-canvas"></canvas>
 
-    <!-- Floating Background Music Player -->
+    <!-- Background Music Player -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-        <div id="music-tip" class="bg-white/95 text-stone-500 border border-[#d4a373]/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
+        <div id="music-tip" class="bg-white/95 text-stone-500 border border-brand-gold/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
             點擊播放背景音樂 🎵
         </div>
-        <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-[#d4a373]/30 text-[#d4a373] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a373]/50">
+        <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-brand-gold/30 text-brand-gold rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-gold/50">
             <i id="music-icon" class="fa-solid fa-music text-lg"></i>
         </button>
-        <audio id="bg-music" loop src="alex-productions-magic-valentines.mp3"></audio>
+        <audio id="bg-music" autoplay loop src="alex-productions-magic-valentines.mp3"></audio>
     </div>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav class="glass-nav fixed top-0 w-full px-3 md:px-12 py-3 flex justify-between items-center">
         <div class="font-eng text-sm md:text-xl font-semibold tracking-widest text-[#d4a373] whitespace-nowrap">
             <span class="md:hidden">O. & Y.</span>
@@ -252,44 +213,42 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-center text-white pt-14 md:pt-16 pb-8 md:pb-12">
-        <!-- Ambient Blurred Background (Desktop depth) -->
-        <div class="hidden md:block absolute inset-0 w-full h-full z-0 overflow-hidden">
-            <img src="cover.jpg" alt="" class="w-full h-full object-cover blur-3xl opacity-30 scale-110 pointer-events-none">
-        </div>
-
-        <!-- Hero Main Photo: 100% Uncropped, 100% Full Width, ZERO Blank Space on Mobile -->
-        <div class="relative w-full z-0 md:absolute md:inset-0 md:flex md:items-center md:justify-center p-0 md:p-6">
-            <img src="cover.jpg" 
-                 alt="Ou yang Po-yen & Chen Yi han" 
-                 class="hero-img-optimized"
-                 loading="eager"
-                 decoding="async">
-            <!-- Gentle Overlay Gradient for Desktop -->
-            <div class="hidden md:block absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80 pointer-events-none"></div>
-        </div>
+    <!-- Hero Section（無縫綠意沉浸滿版，全螢幕無空白＋0%裁切） -->
+    <section class="hero-bg flex items-center justify-center text-center text-white relative overflow-hidden">
         
-        <!-- Main Title Area -->
-        <div class="w-full max-w-full overflow-hidden relative z-20 px-4 mt-6 md:mt-0 md:mb-2">
-            <h2 class="font-eng italic text-xs sm:text-base md:text-xl mb-1 sm:mb-3 opacity-90 tracking-[0.3em] uppercase text-white shadow-sm animate-pulse">
-                Forever Starts with You
-            </h2>
+        <!-- 背景層：提取婚照綠意滿版鋪滿（徹底解決兩邊空白感） -->
+        <img src="cover.jpg" 
+             alt="" 
+             class="absolute inset-0 w-full h-full object-cover blur-2xl scale-125 brightness-60 z-0"
+             onerror="this.style.display='none'">
+
+        <!-- 前景主圖：0% 裁切，完整保留臉龐與婚戒特寫 -->
+        <img src="cover.jpg" 
+             alt="Groom & Bride" 
+             class="relative z-10 max-w-full max-h-[75vh] md:max-h-[82vh] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] my-auto"
+             loading="eager"
+             decoding="async"
+             onerror="this.src='https://i.postimg.cc/nVTGT4Sd/1-(143).jpg'">
+        
+        <!-- 漸層暗光遮罩（確保文字讀取清晰） -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 z-20 pointer-events-none"></div>
+
+        <!-- 內容文字區塊 -->
+        <div class="w-full max-w-full overflow-hidden absolute bottom-6 sm:bottom-10 left-0 right-0 z-30 px-4">
+            <h2 class="font-eng italic text-xs sm:text-sm md:text-xl mb-2 opacity-90 tracking-widest uppercase text-white drop-shadow animate-pulse">Forever Starts with You</h2>
             
-            <!-- 中文姓名主標題 (主要焦點) -->
-            <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-1 sm:mb-2 font-bold tracking-[0.15em] text-white drop-shadow-md" data-zh="歐陽伯彥 & 陳宜函" data-en="Po-yen & Yi-han">
+            <!-- 中文姓名 -->
+            <div class="text-xl sm:text-3xl md:text-5xl font-bold tracking-[0.25em] text-white mb-2 drop-shadow-md">
                 歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
-            </h1>
-            
-            <!-- 英文姓名副標題 -->
-            <p class="font-eng text-sm sm:text-xl md:text-2xl lg:text-3xl mb-3 sm:mb-6 font-light tracking-[0.12em] text-stone-200/90 drop-shadow">
+            </div>
+
+            <!-- 英文姓名 -->
+            <h1 class="font-eng text-xs sm:text-base md:text-2xl mb-4 font-light leading-snug whitespace-nowrap tracking-[0.2em] text-stone-200 opacity-90 drop-shadow">
                 Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
-            </p>
-            
-            <!-- Slogan 文案 -->
-            <p class="text-[11px] sm:text-sm md:text-lg tracking-[0.35em] sm:tracking-[0.4em] font-light opacity-95 text-[#d4a373]" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
-                伯此一生，函你同行
-            </p>
+            </h1>
+
+            <!-- 標語 -->
+            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light opacity-95 text-[#d4a373] drop-shadow" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
         </div>
     </section>
 
@@ -324,7 +283,6 @@
                 </div>
             </div>
 
-            <!-- 浪漫引言 -->
             <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-400 px-4 text-xs sm:text-sm md:text-base reveal" id="quote-text"
                  data-zh="「遇見你，裝飾了我所有的夢境，<br class='hidden sm:inline'>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br class='hidden sm:inline'>把平凡日子過成最珍貴的風景。」"
                  data-en="&ldquo;Meeting you decorated all my dreams,<br class='hidden sm:inline'> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br class='hidden sm:inline'> turning ordinary days into the most precious scenery.&rdquo;">
@@ -336,21 +294,16 @@
         </div>
     </section>
 
-    <!-- Our Sweet Blessing Gallery Section -->
+    <!-- 常駐型拍立得相簿區塊 -->
     <section class="py-12 md:py-20 px-4 bg-[#fdfaf7] relative z-10 w-full overflow-hidden border-t border-stone-100">
         <div class="max-w-4xl mx-auto text-center">
             <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">Our Sweet Blessing</h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 md:gap-16 justify-items-center">
-                <!-- 第一張拍立得 -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
                     <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform -rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-1.png')">
-                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100 flex items-center justify-center">
-                            <img src="daughter-1.png" alt="Our sweet little fairy" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden flex-col items-center justify-center p-6 text-center text-stone-400">
-                                <i class="fa-solid fa-heart text-2xl text-[#d4a373]/50 mb-2"></i>
-                                <span class="text-xs">daughter-1.png</span>
-                            </div>
+                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100 relative">
+                            <img src="daughter-1.png" alt="Our sweet pikmin baby" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center w-full h-full bg-stone-100 text-stone-400 text-xs font-sans\'>daughter-1.png</div>';">
                         </div>
                         <div class="mt-4 px-2">
                             <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「精靈般降臨，溫暖了日常」" data-en="&ldquo;Like an elf descending, warming our days&rdquo;">「精靈般降臨，溫暖了日常」</p>
@@ -359,15 +312,10 @@
                     </div>
                 </div>
 
-                <!-- 第二張拍立得 -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
                     <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-2.jpg')">
-                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100 flex items-center justify-center">
-                            <img src="daughter-2.jpg" alt="Sleeping like an angel" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="hidden flex-col items-center justify-center p-6 text-center text-stone-400">
-                                <i class="fa-solid fa-star text-2xl text-[#d4a373]/50 mb-2"></i>
-                                <span class="text-xs">daughter-2.jpg</span>
-                            </div>
+                        <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100 relative">
+                            <img src="daughter-2.jpg" alt="Our sleeping bunny angel" class="w-full h-full object-cover" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center justify-center w-full h-full bg-stone-100 text-stone-400 text-xs font-sans\'>daughter-2.jpg</div>';">
                         </div>
                         <div class="mt-4 px-2">
                             <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「最溫柔的夢境與未來」" data-en="&ldquo;Our most gentle dream & future&rdquo;">「最溫柔的夢境與未來」</p>
@@ -418,13 +366,11 @@
                         </a>
                     </div>
                     
-                    <!-- Embed Google Map -->
                     <div class="mt-6 rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 h-56 sm:h-80 w-full">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.8906352037107!2d121.74543767605417!3d25.13175853381677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345d4e135b1c97a7%3A0x64cf5d3a241db1b!2z5Z-66ZqG5riv5rW355Si5qiT!5e0!3m2!1szh-TW!2stw!4v1710000000000" 
                                 class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <!-- Transportation Guide -->
                     <div class="mt-10 pt-6 border-t border-stone-100">
                         <h4 class="text-xs sm:text-sm tracking-[0.2em] text-[#8da399] flex items-center font-bold uppercase mb-4">
                             <i class="fa-solid fa-map-location-dot mr-2"></i>
@@ -454,7 +400,7 @@
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-car text-[#8da399]"></i> <span data-zh="自行開車" data-en="By Car">自行開車</span>
                                     </p>
-                                    <p data-zh="建議直接導航「基隆港海產樓」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。" data-en="Navigate directly to Keelung Port Seafood Restaurant. After exiting the Keelung end of the highway, turn right onto Xin 2nd Rd. and drive straight for about 800 meters to reach the venue. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。</p>
+                                    <p data-zh="建議直接導航「基隆港海產樓」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車." data-en="Navigate directly to Keelung Port Seafood Restaurant. After exiting the Keelung end of the highway, turn right onto Xin 2nd Rd. and drive straight for about 800 meters to reach the venue. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。</p>
                                 </div>
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
@@ -468,7 +414,7 @@
                 </div>
             </div>
 
-            <!-- Dress Code Suggestions -->
+            <!-- 服裝色彩建議 -->
             <div id="dress-code" class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
@@ -517,14 +463,12 @@
     <section id="rsvp" class="py-16 md:py-32 px-4 bg-white relative z-10 w-full">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 xl:gap-16 items-start reveal">
             
-            <!-- Left Side: Digital Invitation Cards -->
             <div class="w-full lg:w-1/2 flex flex-col sm:flex-row lg:flex-col gap-6 items-center justify-center">
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
-                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer bg-stone-50 flex items-center justify-center" onclick="openLightbox('封面圖.jpg')">
-                        <img src="封面圖.jpg" alt="Save The Date 封面" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="hidden flex-col items-center text-stone-400 p-4">
-                            <i class="fa-regular fa-image text-3xl mb-2 text-[#d4a373]"></i>
-                            <span class="text-xs">封面圖.jpg</span>
+                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('封面圖.jpg')">
+                        <img src="封面圖.jpg" alt="Save The Date 封面" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-sans tracking-widest gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> 點擊放大查看
                         </div>
                     </div>
                     <div class="text-center mt-3">
@@ -533,11 +477,10 @@
                 </div>
 
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
-                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer bg-stone-50 flex items-center justify-center" onclick="openLightbox('內頁.png')">
-                        <img src="內頁.png" alt="Wedding Details 內頁" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="hidden flex-col items-center text-stone-400 p-4">
-                            <i class="fa-regular fa-image text-3xl mb-2 text-[#d4a373]"></i>
-                            <span class="text-xs">內頁.png</span>
+                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('內頁.png')">
+                        <img src="內頁.png" alt="Wedding Details 內頁" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-sans tracking-widest gap-2">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> 點擊放大查看
                         </div>
                     </div>
                     <div class="text-center mt-3">
@@ -546,7 +489,7 @@
                 </div>
             </div>
 
-            <!-- Right Side: Interactive RSVP Form -->
+            <!-- 右半部：出席表單 -->
             <div class="w-full lg:w-1/2 bg-white p-6 sm:p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.04)] rounded-[2.5rem] relative overflow-hidden border border-stone-100/50">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4a373] opacity-[0.02] -mr-16 -mt-16 rounded-full"></div>
                 
@@ -665,7 +608,6 @@
                     </div>
                 </form>
                 
-                <!-- Success Message Overlay -->
                 <div id="success_msg" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center overflow-y-auto text-center p-6 sm:p-10 z-20">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 bg-[#d4a373] rounded-full flex items-center justify-center text-white mb-6 shadow-lg shrink-0">
                         <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
@@ -685,20 +627,19 @@
     <!-- Footer -->
     <footer class="py-12 md:py-16 bg-[#8da399] text-white text-center relative z-10 w-full">
         <div class="max-w-4xl mx-auto px-6">
-            <p class="text-sm font-bold tracking-widest mb-1" data-zh="歐陽伯彥 & 陳宜函" data-en="Po-yen & Yi-han">歐陽伯彥 & 陳宜函</p>
-            <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs opacity-90 uppercase mb-3">Ou yang Po-yen & Chen Yi han</p>
+            <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs md:text-sm opacity-90 uppercase mb-3">Ou yang Po-yen & Chen Yi han</p>
             <p class="text-[9px] tracking-widest opacity-40 uppercase">© 2026 Ou yang Po-yen & Chen Yi han. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox -->
     <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-        <button class="absolute top-6 right-6 text-white text-3xl hover:text-[#d4a373]">&times;</button>
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold">&times;</button>
         <img id="lightbox-img" src="" alt="Zoomed view" class="max-w-full max-h-full p-4 rounded-3xl object-contain transform scale-95 transition-transform duration-300">
     </div>
 
     <script>
-        // --- Countdown Timer ---
+        // Countdown
         const targetDate = new Date("Dec 12, 2026 18:00:00").getTime();
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -722,7 +663,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- UI Logic: Smart RSVP Fields ---
+        // UI Smart Fields
         function handleAttendanceChange(isAttending) {
             var target = document.getElementById('banquet_smart_fields');
             var adultInput = document.getElementById('adult_guests_input');
@@ -752,7 +693,7 @@
             }
         }
 
-        // --- Background Music Controls ---
+        // Music Control
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
@@ -765,7 +706,7 @@
                     musicBtn.classList.add('spinning');
                     if (musicTip) musicTip.innerText = "背景音樂播放中 🎵";
                 }).catch(e => {
-                    console.log("Audio play deferred to direct user click.");
+                    console.log("Audio play blocked by browser.");
                 });
             } else {
                 music.pause();
@@ -782,14 +723,12 @@
                 if (musicTip) musicTip.innerText = "背景音樂播放中 🎵";
                 document.removeEventListener('click', autoPlayOnFirstInteraction);
                 document.removeEventListener('touchstart', autoPlayOnFirstInteraction);
-            }).catch(e => {
-                console.log("Autoplay waiting for touch event.");
-            });
+            }).catch(e => {});
         }
         document.addEventListener('click', autoPlayOnFirstInteraction);
         document.addEventListener('touchstart', autoPlayOnFirstInteraction);
 
-        // --- Form Submission Logic ---
+        // Form Submission
         var submitted = false;
         document.getElementById('weddingForm').addEventListener('submit', function() {
             submitted = true;
@@ -808,10 +747,9 @@
             }, 500);
         }
 
-        // --- 🌸 Floating Petals Canvas ---
+        // Canvas Petals
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
-
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
@@ -877,7 +815,7 @@
             animatePetals();
         };
 
-        // --- Scroll Reveal Logic ---
+        // Scroll Reveal
         const revealElements = document.querySelectorAll('.reveal');
         const checkReveal = () => {
             const triggerBottom = window.innerHeight * 0.85;
@@ -891,11 +829,10 @@
         window.addEventListener('scroll', checkReveal);
         checkReveal();
 
-        // --- Bilingual Language Switcher ---
+        // Language Switcher
         let currentLanguage = 'zh';
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
-            
             const translatableElements = document.querySelectorAll('[data-zh]');
             translatableElements.forEach(el => {
                 const targetText = currentLanguage === 'zh' ? el.getAttribute('data-zh') : el.getAttribute('data-en');
@@ -913,11 +850,10 @@
 
             const langBtn = document.getElementById('lang-toggle-btn');
             langBtn.innerText = currentLanguage === 'zh' ? 'EN' : '繁中';
-
-            document.title = currentLanguage === 'zh' ? '歐陽伯彥 & 陳宜函 婚禮邀請函 | Wedding Invitation' : 'Po-yen & Yi-han Wedding Invitation';
+            document.title = currentLanguage === 'zh' ? 'Ou yang Po-yen & Chen Yi han 婚禮邀請函' : 'Ou yang Po-yen & Chen Yi han Wedding Invitation';
         }
 
-        // --- Lightbox Modal Logic ---
+        // Lightbox
         function openLightbox(imgSrc) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
