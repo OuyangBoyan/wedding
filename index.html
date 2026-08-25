@@ -50,13 +50,12 @@
             height: 100vh;
             width: 100%;
             overflow: hidden;
-            background-color: #19281b; /* 與照片綠植背景完美融為一體的墨綠底色 */
         }
         /* GPU Accelerated Ultra-sharp Image Fitting */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* 手機與電腦均完整顯示不裁切 */
+            object-fit: cover;
             object-position: center;
             will-change: transform;
             transform: translateZ(0);
@@ -64,12 +63,6 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: auto;
-        }
-        @media (min-width: 1024px) {
-            .hero-img-optimized {
-                object-fit: cover;
-                object-position: center 25%;
-            }
         }
         /* Countdown Cards (Mobile Optimized - 防止極小螢幕溢出) */
         .timer-card {
@@ -241,28 +234,25 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg flex flex-col justify-between items-center text-center text-white px-4 py-16 md:py-20 relative">
-        <!-- 婚紗首頁圖：預設 cover.jpg，無縫融入背景絕不裁切 -->
+    <section class="hero-bg flex items-center justify-center text-center text-white px-4">
+        <!-- 婚紗首頁圖：cover.jpg 滿版呈現 -->
         <img src="cover.jpg" 
              alt="Groom & Bride" 
              class="absolute inset-0 hero-img-optimized z-0"
              loading="eager"
              decoding="sync">
         
-        <!-- 上下雙重光影漸層（強化文字閱讀性並讓照片與畫面自然過渡） -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-[#19281b] z-10 pointer-events-none"></div>
+        <!-- 高級暗光影院遮罩層 -->
+        <div class="absolute inset-0 bg-black/35 md:bg-black/40 z-10"></div>
 
-        <!-- 頂部標題文字 -->
-        <div class="w-full max-w-full overflow-hidden relative z-20 pt-8 sm:pt-12">
-            <h2 class="font-eng italic text-xs sm:text-base md:text-xl mb-2 opacity-90 tracking-[0.3em] uppercase text-white drop-shadow-md animate-pulse">Forever Starts with You</h2>
-        </div>
-
-        <!-- 底部主名字與語錄（不遮擋中央新人畫面） -->
-        <div class="w-full max-w-full overflow-hidden relative z-20 pb-4 sm:pb-8">
-            <h1 class="font-eng text-[5.5vw] sm:text-3xl md:text-5xl lg:text-6xl mb-3 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-lg">
-                Ou yang Po-yen <span class="text-[4vw] sm:text-2xl md:text-3xl italic text-[#d4a373]">&</span> Chen Yi han
+        <!-- 內容文字區塊（高於遮罩層） -->
+        <div class="w-full max-w-full overflow-hidden relative z-20">
+            <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-3 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">Forever Starts with You</h2>
+            <!-- 主名字：單行顯示並自我縮放，確保不跑版 -->
+            <h1 class="font-eng text-[5.8vw] sm:text-4xl md:text-6xl lg:text-7.5xl mb-6 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-md">
+                Ou yang Po-yen <span class="text-[4vw] sm:text-2xl md:text-4xl italic text-[#d4a373]">&</span> Chen Yi han
             </h1>
-            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light opacity-95 text-[#e6c8a2] drop-shadow" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
+            <p class="text-xs sm:text-sm md:text-xl tracking-[0.4em] font-light opacity-90 text-brand-gold" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
         </div>
     </section>
 
