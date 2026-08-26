@@ -36,6 +36,7 @@
             white-space: nowrap !important;
             display: inline-block;
         }
+        
         /* Frosted Glass Navbar */
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
@@ -49,9 +50,9 @@
         .hero-img-optimized {
             width: 100%;
             height: 100%;
-            /* 手機版：恢復滿版，搭配外部容器降高度來達成縮小不裁切的效果 */
             object-fit: cover;
-            object-position: center 25%;
+            /* 手機版：對焦點往左微調 (35%)，確保左側的新娘與戒指不被裁切 */
+            object-position: 35% 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -59,7 +60,7 @@
             image-rendering: crisp-edges;
             image-rendering: auto;
         }
-        /* 針對網頁版（寬螢幕）設定：保持您的完美設定 */
+        /* 針對網頁版（寬螢幕）設定：保持您的完美設定，不動！ */
         @media (min-width: 768px) {
             .hero-img-optimized {
                 object-position: 100% 30%; 
@@ -122,6 +123,7 @@
                 margin-bottom: 2rem;
             }
         }
+        
         /* Smart Fields Animation */
         .smart-field {
             max-height: 0;
@@ -170,6 +172,7 @@
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
+        
         /* Floating Music Vinyl Animation */
         @keyframes rotate-music {
             from { transform: rotate(0deg); }
@@ -234,7 +237,7 @@
     </nav>
 
     <!-- Hero Section (畫廊留白裱框：徹底解決黑邊與漸層異常) -->
-    <!-- 手機版高度微調至 85vh (h-[85vh]) 迫使圖片在橫向裝入更多畫面，達到縮小新郎新娘比例的效果 -->
+    <!-- 手機版高度微調至 85vh 迫使圖片在橫向裝入更多畫面，網頁版維持您的 100vh 設計 -->
     <section class="relative w-full h-[85vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
         
         <!-- 實體圖片與遮罩的共用容器 (手機滿版，網頁版自帶縮小、圓角與高級陰影) -->
@@ -306,13 +309,13 @@
                 </div>
             </div>
 
-            <!-- 浪漫引言：精美自適應排版 -->
+            <!-- 浪漫引言：精美自適應排版 (移除 hidden 設定，確保全平台精準斷行) -->
             <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-400 px-4 text-xs sm:text-sm md:text-base reveal" id="quote-text"
-                 data-zh="「遇見你，裝飾了我所有的夢境，<br class='hidden sm:inline'>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br class='hidden sm:inline'>把平凡日子過成最珍貴的風景。」"
-                 data-en="&ldquo;Meeting you decorated all my dreams,<br class='hidden sm:inline'> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br class='hidden sm:inline'> turning ordinary days into the most precious scenery.&rdquo;">
-                「遇見你，裝飾了我所有的夢境，<br class="hidden sm:inline">
+                 data-zh="「遇見你，裝飾了我所有的夢境，<br>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br>把平凡日子過成最珍貴的風景。」"
+                 data-en="&ldquo;Meeting you decorated all my dreams,<br> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br> turning ordinary days into the most precious scenery.&rdquo;">
+                「遇見你，裝飾了我所有的夢境，<br>
                 也讓未來有了最溫柔的方向。<br><br>
-                在未來的漫長歲月裡，我們攜手並進，<br class="hidden sm:inline">
+                在未來的漫長歲月裡，我們攜手並進，<br>
                 把平凡日子過成最珍貴的風景。」
             </div>
         </div>
@@ -400,7 +403,7 @@
                                 class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <!-- 直接展示的交通指引區塊 -->
+                    <!-- 交通指引區塊 -->
                     <div class="mt-10 pt-6 border-t border-stone-100">
                         <h4 class="text-xs sm:text-sm tracking-[0.2em] text-[#8da399] flex items-center font-bold uppercase mb-4">
                             <i class="fa-solid fa-map-location-dot mr-2"></i>
@@ -408,35 +411,30 @@
                         </h4>
                         <div class="bg-gray-50 px-4 sm:px-6 py-2 rounded-2xl text-xs md:text-sm leading-relaxed text-gray-500 border border-stone-100">
                             <div class="py-2 space-y-4">
-                                <!-- 1. 台鐵 -->
                                 <div>
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-train text-[#8da399]"></i> <span data-zh="台鐵" data-en="Railway (TRA)">台鐵</span>
                                     </p>
                                     <p data-zh="搭乘台鐵至「基隆車站」，出站後轉乘計程車約 5–10 分鐘即可抵達會場。" data-en="Take the train to Keelung Station, then take a taxi for about 5-10 minutes to the venue.">搭乘台鐵至「<span class="no-wrap">基隆車站</span>」，出站後轉乘計程車約 <span class="no-wrap">5–10 分鐘</span>即可抵達會場。</p>
                                 </div>
-                                <!-- 2. 國道客運 -->
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-bus text-[#8da399]"></i> <span data-zh="國道客運" data-en="Intercity Bus">國道客運</span>
                                     </p>
                                     <p data-zh="可搭乘往「基隆」方向之國道客運等路線，至「基隆車站」下車後，再轉乘計程車前往會場。" data-en="Take a highway bus towards Keelung, get off at Keelung Station, and take a taxi to the venue.">可搭乘往「基隆」方向之國道客運等路線，至「<span class="no-wrap">基隆車站</span>」下車後，再轉乘計程車前往會場。</p>
                                 </div>
-                                <!-- 3. 在地轉乘 (公車/步行) -->
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-arrows-spin text-[#8da399]"></i> <span data-zh="在地轉乘 (公車/步行)" data-en="Local Transfer (Bus/Walk)">在地轉乘 (公車/步行)</span>
                                     </p>
                                     <p data-zh="於基隆車站周邊可轉乘市區公車前往信二路一帶（基隆市公車 202、203、204 在信義區公所站下車即可抵達），或依 Google 地圖導航步行／短程計程車前往會場。" data-en="Transfer to city buses near Keelung Station to Xin 2nd Road (Take Keelung City Bus 202, 203, or 204 and get off at Xinyi District Office Station to arrive), or walk/take a short taxi ride using Google Maps.">於<span class="no-wrap">基隆車站</span>周邊可轉乘市區公車前往<span class="no-wrap">信二路</span>一帶（基隆市公車 202、203、204 在信義區公所站下車即可抵達），或依 Google 地圖導航步行／短程計程車前往會場。</p>
                                 </div>
-                                <!-- 4. 自行開車 -->
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-car text-[#8da399]"></i> <span data-zh="自行開車" data-en="By Car">自行開車</span>
                                     </p>
                                     <p data-zh="建議直接導航「基隆港海產樓」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車." data-en="Navigate directly to Keelung Port Seafood Restaurant. After exiting the Keelung end of the highway, turn right onto Xin 2nd Rd. and drive straight for about 800 meters to reach the venue. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。</p>
                                 </div>
-                                <!-- 5. 一般計程車 / Uber -->
                                 <div class="border-t border-gray-200/50 pt-3">
                                     <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-taxi text-[#8da399]"></i> <span data-zh="計程車 / Uber" data-en="Taxi / Uber">計程車 / Uber</span>
@@ -449,7 +447,7 @@
                 </div>
             </div>
 
-            <!-- 服裝色彩建議 V-Card (著裝建議錨點 id="dress-code") -->
+            <!-- 服裝色彩建議 V-Card -->
             <div id="dress-code" class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
@@ -463,33 +461,27 @@
                     我們準備了以下推薦色系，誠摯邀請您穿著相近色彩的服飾，與我們一同留下溫馨美好的合照！（非強制規定，您可以自由穿著最喜愛的服飾唷）
                 </p>
                 
-                <!-- 色票排版 (完美對齊正圓 w-10 h-10) -->
                 <div class="grid grid-cols-5 gap-1 sm:gap-6 text-center max-w-lg mx-auto">
-                    <!-- 黑 -->
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #2D2D2D;"></div>
                         <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="黑" data-en="Black">黑</p>
                         <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Black</p>
                     </div>
-                    <!-- 白 -->
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-stone-200 shadow-md" style="background-color: #F7F5F0;"></div>
                         <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="白" data-en="White">白</p>
                         <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">White</p>
                     </div>
-                    <!-- 灰 -->
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8D9399;"></div>
                         <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="灰" data-en="Grey">灰</p>
                         <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Grey</p>
                     </div>
-                    <!-- 奶茶 -->
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #D0B8A8;"></div>
                         <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="奶茶" data-en="Oatmeal">奶茶</p>
                         <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Oatmeal</p>
                     </div>
-                    <!-- 暗紅 -->
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8B4A4A;"></div>
                         <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="暗紅" data-en="Burgundy">暗紅</p>
@@ -541,32 +533,22 @@
                 <h3 class="text-xl md:text-3xl font-bold text-center mb-2 tracking-widest text-gray-800" data-zh="出席回函" data-en="RSVP">出席回函</h3>
                 <p class="font-eng text-center text-[#d4a373] italic mb-10 tracking-[0.3em] uppercase text-xs">Awaiting Your Reply</p>
 
-                <!-- 隱藏式 Iframe 提交技術 -->
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                 
-                <!-- 已對接 Google 表單實際 formResponse 網址 -->
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
                     <div class="space-y-8">
-                        
-                        <!-- 1. 您的大名 -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的大名 NAME *" data-en="YOUR NAME *">您的大名 <span class="font-eng uppercase">NAME</span> *</label>
                             <input type="text" name="entry.1886153940" class="form-input text-sm md:text-base" placeholder="請輸入您的大名" required value="">
                         </div>
-                        
-                        <!-- 2. 您的聯絡電話 -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的聯絡電話 PHONE *" data-en="YOUR PHONE *">您的聯絡電話 <span class="font-eng uppercase">PHONE</span> *</label>
                             <input type="tel" name="entry.2029074728" class="form-input text-sm md:text-base" placeholder="請輸入聯絡電話" required value="">
                         </div>
-                        
-                        <!-- 3. 您的Email/Line -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的Email/Line EMAIL / LINE *" data-en="YOUR EMAIL / LINE *">您的Email/Line <span class="font-eng uppercase">EMAIL / LINE</span> *</label>
                             <input type="text" name="entry.1647990662" class="form-input text-sm md:text-base" placeholder="請輸入您的 Email 或 Line" required value="">
                         </div>
-                        
-                        <!-- 4. 您和新人的關係是？ -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您和新人的關係是？ RELATIONSHIP *" data-en="RELATIONSHIP WITH COUPLE *">您和新人的關係是？ <span class="font-eng uppercase">RELATIONSHIP</span> *</label>
                             <select name="entry.2044940604" class="form-input text-sm md:text-base cursor-pointer bg-transparent" required>
@@ -578,8 +560,6 @@
                                 <option value="共同朋友">共同朋友</option>
                             </select>
                         </div>
-
-                        <!-- 5. 是否可以參加婚禮呢？ -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否可以參加婚禮呢？ ATTENDANCE *" data-en="WILL YOU ATTEND? *">是否可以參加婚禮呢？ <span class="font-eng uppercase">ATTENDANCE</span> *</label>
                             <div class="flex flex-col space-y-3">
@@ -594,28 +574,21 @@
                             </div>
                         </div>
 
-                        <!-- 智能顯示區塊 -->
                         <div id="banquet_smart_fields" class="smart-field space-y-8">
                             <div class="grid grid-cols-2 gap-4 md:gap-10">
-                                <!-- 6. 出席的「成人」人數 -->
                                 <div>
                                     <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="出席的「成人」人數 ADULTS *" data-en="NUMBER OF ADULTS *">出席的「成人」人數 <span class="font-eng uppercase">ADULTS</span> *</label>
                                     <input type="number" id="adult_guests_input" name="entry.1567260636" class="form-input text-sm" placeholder="成人人數" min="0" value="0">
                                 </div>
-                                <!-- 7. 出席的「兒童」人數 -->
                                 <div>
                                     <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="出席的「兒童」人數 CHILDREN" data-en="NUMBER OF CHILDREN">出席的「兒童」人數 <span class="font-eng uppercase">CHILDREN</span></label>
                                     <input type="number" id="child_guests_input" name="entry.1259066676" class="form-input text-sm" placeholder="兒童人數" min="0" value="0">
                                 </div>
                             </div>
-
-                            <!-- 8. 是否需要兒童座椅？需要幾張呢？ -->
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否需要兒童座椅？需要幾張呢？ HIGH CHAIR" data-en="DO YOU NEED HIGH CHAIRS? HOW MANY?">是否需要兒童座椅？需要幾張呢？ <span class="font-eng uppercase">HIGH CHAIR</span></label>
                                 <input type="text" name="entry.1887387302" class="form-input text-sm" placeholder="如需要請註明數量 (如：1張)" value="">
                             </div>
-                            
-                            <!-- 9. 是否需要安排空位給使用輪椅? -->
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要安排空位給使用輪椅? WHEELCHAIR" data-en="WHEELCHAIR SPACE NEEDED?">是否需要安排空位給使用輪椅? <span class="font-eng uppercase">WHEELCHAIR</span></label>
                                 <div class="flex space-x-12">
@@ -629,14 +602,10 @@
                                     </label>
                                 </div>
                             </div>
-
-                            <!-- 10. 是否準備素食？需要幾份呢？ -->
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否準備素食？需要幾份呢？ VEGETARIAN" data-en="VEGETARIAN MEALS NEEDED? HOW MANY?">是否準備素食？需要幾份呢？ <span class="font-eng uppercase">VEGETARIAN</span></label>
                                 <input type="text" name="entry.1945371672" class="form-input text-sm" placeholder="如需要請註明份數 (如：1份)" value="">
                             </div>
-
-                            <!-- 11. 是否需要寄送紙本喜帖給您？ -->
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要寄送紙本喜帖給您？ PAPER INVITATION" data-en="SEND PHYSICAL INVITATION CARD?">是否需要寄送紙本喜帖給您？ <span class="font-eng uppercase">PAPER INVITATION</span></label>
                                 <div class="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:space-x-12">
@@ -650,15 +619,12 @@
                                     </label>
                                 </div>
                             </div>
-
-                            <!-- 12. 寄送紙本喜帖收件資料 (收件人/地址/電話) -->
                             <div id="address_smart_field" class="smart-field">
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="請提供您的收件資料（收件人/地址/電話） SHIPPING DETAILS" data-en="SHIPPING DETAILS (RECIPIENT/ADDRESS/PHONE)">請提供您的收件資料（收件人/地址/電話） <span class="font-eng uppercase">SHIPPING DETAILS</span></label>
                                 <textarea name="entry.2093466386" id="form-address-field" rows="2" class="form-input text-sm md:text-base font-sans" placeholder="請填寫：收件人、郵遞區號 + 地址、電話"></textarea>
                             </div>
                         </div>
 
-                        <!-- 13. 希望您給我們一些祝福.... -->
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="希望您給我們一些祝福.... BLESSING" data-en="CONGRATULATION MESSAGE BLESSING">希望您給我們一些祝福.... <span class="font-eng uppercase">BLESSING</span></label>
                             <textarea name="entry.845217517" id="form-blessing-field" rows="3" class="form-input text-sm md:text-base font-sans" placeholder="留下您的悄悄話..."></textarea>
@@ -946,5 +912,3 @@
     </script>
 </body>
 </html>
-
-手機版還是裁切到很多 有辦法像網頁版那樣再縮小點嗎？ 網頁版的字體大小那些都正常 幫我保持
