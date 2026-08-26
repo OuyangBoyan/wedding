@@ -49,8 +49,9 @@
         .hero-img-optimized {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            object-position: center;
+            /* 手機版：使用 contain 讓圖片等比縮小完整顯示，不裁切人物與戒指 */
+            object-fit: contain;
+            object-position: center 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -58,9 +59,10 @@
             image-rendering: crisp-edges;
             image-rendering: auto;
         }
-        /* 針對網頁版（寬螢幕）設定：讓圖片往左推 */
+        /* 針對網頁版（寬螢幕）設定：恢復為 cover 滿版並往左推 */
         @media (min-width: 768px) {
             .hero-img-optimized {
+                object-fit: cover;
                 object-position: 100% 30%; 
             }
         }
@@ -105,6 +107,7 @@
                 margin: 0 15px;
             }
         }
+        
         /* V-Card Style */
         .v-card {
             background: white;
@@ -321,28 +324,28 @@
             <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">Our Sweet Blessing</h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 md:gap-16 justify-items-center">
-                <!-- 第一張拍立得 -->
+                <!-- 第一張拍立得 (12.12 氣球照) -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
-                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform -rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-1.png')">
+                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform -rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-1.jpg')">
                         <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
-                            <img src="daughter-1.png" alt="Our sweet pikmin baby" class="w-full h-full object-cover">
+                            <img src="daughter-1.jpg" alt="12.12，與你相約幸福" class="w-full h-full object-cover">
                         </div>
                         <div class="mt-4 px-2">
-                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「精靈般降臨，溫暖了日常」" data-en="&ldquo;Like an elf descending, warming our days&rdquo;">「精靈般降臨，溫暖了日常」</p>
-                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">Our sweet little fairy</p>
+                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「12.12，與你相約幸福」" data-en="&ldquo;We are getting married&rdquo;">「12.12，與你相約幸福」</p>
+                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">We are getting married</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 第二張拍立得 -->
+                <!-- 第二張拍立得 (復古皮箱照) -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
-                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-2.jpg')">
+                    <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-2 (2).jpg')">
                         <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
-                            <img src="daughter-2.jpg" alt="Our sleeping bunny angel" class="w-full h-full object-cover">
+                            <img src="daughter-2 (2).jpg" alt="提著行囊，踏上未來旅程" class="w-full h-full object-cover">
                         </div>
                         <div class="mt-4 px-2">
-                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「最溫柔的夢境與未來」" data-en="&ldquo;Our most gentle dream & future&rdquo;">「最溫柔的夢境與未來」</p>
-                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">Sleeping like an angel</p>
+                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「提著行囊，踏上未來旅程」" data-en="&ldquo;A lifetime of adventures together&rdquo;">「提著行囊，踏上未來旅程」</p>
+                            <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">A lifetime of adventures together</p>
                         </div>
                     </div>
                 </div>
