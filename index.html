@@ -49,8 +49,8 @@
         .hero-img-optimized {
             width: 100%;
             height: 100%;
-            /* 手機版：使用 contain 讓圖片等比縮小完整顯示，不裁切人物與戒指 */
-            object-fit: contain;
+            /* 手機版：恢復滿版，搭配外部容器降高度來達成縮小不裁切的效果 */
+            object-fit: cover;
             object-position: center 25%;
             will-change: transform;
             transform: translateZ(0);
@@ -59,10 +59,9 @@
             image-rendering: crisp-edges;
             image-rendering: auto;
         }
-        /* 針對網頁版（寬螢幕）設定：恢復為 cover 滿版並往左推 */
+        /* 針對網頁版（寬螢幕）設定：保持您的完美設定 */
         @media (min-width: 768px) {
             .hero-img-optimized {
-                object-fit: cover;
                 object-position: 100% 30%; 
             }
         }
@@ -235,7 +234,8 @@
     </nav>
 
     <!-- Hero Section (畫廊留白裱框：徹底解決黑邊與漸層異常) -->
-    <section class="relative w-full h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
+    <!-- 手機版高度微調至 85vh (h-[85vh]) 迫使圖片在橫向裝入更多畫面，達到縮小新郎新娘比例的效果 -->
+    <section class="relative w-full h-[85vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
         
         <!-- 實體圖片與遮罩的共用容器 (手機滿版，網頁版自帶縮小、圓角與高級陰影) -->
         <div class="relative w-full h-full md:rounded-[2rem] overflow-hidden md:shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex items-end justify-center">
@@ -946,3 +946,5 @@
     </script>
 </body>
 </html>
+
+手機版還是裁切到很多 有辦法像網頁版那樣再縮小點嗎？ 網頁版的字體大小那些都正常 幫我保持
