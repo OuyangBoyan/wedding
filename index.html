@@ -211,18 +211,15 @@
         <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-brand-gold/30 text-brand-gold rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brand-gold/50">
             <i id="music-icon" class="fa-solid fa-music text-lg"></i>
         </button>
-        <!-- 已替換為相對路徑，請確保 alex-productions-magic-valentines.mp3 已上傳至同一個 GitHub 資料夾 -->
         <audio id="bg-music" autoplay loop src="alex-productions-magic-valentines.mp3"></audio>
     </div>
 
     <!-- Navigation -->
     <nav class="glass-nav fixed top-0 w-full px-3 md:px-12 py-3 flex justify-between items-center">
-        <!-- 導覽列左上角名字在手機版顯示 O. & Y.，寬螢幕才展示完整姓名，完美防止文字重疊與跑版 -->
         <div class="font-eng text-sm md:text-xl font-semibold tracking-widest text-[#d4a373] whitespace-nowrap">
             <span class="md:hidden">O. & Y.</span>
             <span class="hidden md:inline">Ou yang Po-yen & Chen Yi han</span>
         </div>
-        <!-- 著裝建議已完美靠右排列在婚禮詳情右邊：關於我們 ➔ 婚禮詳情 ➔ 著裝建議 ➔ 出席回函 -->
         <div class="flex space-x-2.5 sm:space-x-8 md:space-x-12 text-[10px] sm:text-xs tracking-widest text-gray-400 uppercase font-bold items-center">
             <a href="#about" class="hover:text-[#d4a373] transition" data-zh="關於我們" data-en="ABOUT">關於我們</a>
             <a href="#details" class="hover:text-[#d4a373] transition" data-zh="婚禮詳情" data-en="DETAILS">婚禮詳情</a>
@@ -233,8 +230,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-bg flex items-center justify-center text-center text-white px-4">
+    <!-- Hero Section (調整靠下排列 items-end，搭配底部柔和漸層，完全避開擋到照片中的臉部) -->
+    <section class="hero-bg flex items-end justify-center text-center text-white px-4 pb-12 sm:pb-16 md:pb-20">
         <!-- 婚紗首頁圖：cover.jpg 滿版呈現 -->
         <img src="cover.jpg" 
              alt="Groom & Bride" 
@@ -242,17 +239,30 @@
              loading="eager"
              decoding="sync">
         
-        <!-- 高級暗光影院遮罩層 -->
-        <div class="absolute inset-0 bg-black/35 md:bg-black/40 z-10"></div>
+        <!-- 高級漸層影院遮罩層：專門加深底部文字區，同時保持上方新人臉部區域完全清晰 -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
 
-        <!-- 內容文字區塊（高於遮罩層） -->
-        <div class="w-full max-w-full overflow-hidden relative z-20">
-            <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-3 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">Forever Starts with You</h2>
-            <!-- 主名字：單行顯示並自我縮放，確保不跑版 -->
-            <h1 class="font-eng text-[5.8vw] sm:text-4xl md:text-6xl lg:text-7.5xl mb-6 font-light leading-snug whitespace-nowrap tracking-wide drop-shadow-md">
-                Ou yang Po-yen <span class="text-[4vw] sm:text-2xl md:text-4xl italic text-[#d4a373]">&</span> Chen Yi han
+        <!-- 內容文字區塊（靠下置中，縮小英文尺寸並加入中文姓名） -->
+        <div class="w-full max-w-full overflow-hidden relative z-20 px-2">
+            <!-- 1. Forever Starts with You -->
+            <h2 class="font-eng italic text-xs sm:text-sm md:text-xl mb-2 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">
+                Forever Starts with You
+            </h2>
+            
+            <!-- 2. 中文姓名：歐陽伯彥 & 陳宜函 (放到英文上面) -->
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-medium tracking-[0.25em] mb-1 text-white drop-shadow-md" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
+                歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
+            </h3>
+
+            <!-- 3. 英文姓名：Ou yang Po-yen & Chen Yi han (字體調小) -->
+            <h1 class="font-eng text-xs sm:text-base md:text-xl mb-4 font-light leading-snug whitespace-nowrap tracking-wider text-stone-200 drop-shadow-sm opacity-90">
+                Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
             </h1>
-            <p class="text-xs sm:text-sm md:text-xl tracking-[0.4em] font-light opacity-90 text-brand-gold" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">伯此一生，函你同行</p>
+
+            <!-- 4. 伯此一生，函你同行 -->
+            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light opacity-95 text-[#d4a373] drop-shadow-sm" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
+                伯此一生，函你同行
+            </p>
         </div>
     </section>
 
@@ -525,7 +535,7 @@
                 <!-- 隱藏式 Iframe 提交技術 -->
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                 
-                <!-- 已對接您的 Google 表單實際 formResponse 網址 -->
+                <!-- 已對接 Google 表單實際 formResponse 網址 -->
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
                     <div class="space-y-8">
                         
@@ -671,7 +681,8 @@
     <!-- Footer -->
     <footer class="py-12 md:py-16 bg-[#8da399] text-white text-center relative z-10 w-full">
         <div class="max-w-4xl mx-auto px-6">
-            <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs md:text-sm opacity-90 uppercase mb-3">Ou yang Po-yen & Chen Yi han</p>
+            <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs md:text-sm opacity-90 uppercase mb-1">歐陽伯彥 & 陳宜函</p>
+            <p class="font-eng tracking-[0.15em] text-[10px] md:text-xs opacity-75 uppercase mb-3">Ou yang Po-yen & Chen Yi han</p>
             <p class="text-[9px] tracking-widest opacity-40 uppercase">© 2026 Ou yang Po-yen & Chen Yi han. All rights reserved.</p>
         </div>
     </footer>
@@ -706,25 +717,6 @@
         };
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
-        // --- UI Logic: Accordion ---
-        function toggleAccordion(btn) {
-            btn.classList.toggle('active');
-            const content = btn.nextElementSibling;
-            const icon = btn.querySelector('svg');
-            
-            if (btn.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.opacity = "1";
-                content.style.paddingTop = "1.5rem";
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
-                content.style.paddingTop = "0px";
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
 
         // --- UI Logic: Smart Fields ---
         function handleAttendanceChange(isAttending) {
