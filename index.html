@@ -65,8 +65,8 @@
             height: 100%;
             /* 恢復 cover 滿版無留白 */
             object-fit: cover; 
-            /* 關鍵：將視覺焦點鎖定在中上方 (25%)，確保臉部永遠在畫面安全區內 */
-            object-position: center 25%;
+            /* 關鍵：第一個數值(X軸)控制左右，大於 50% 圖片會往左移；第二個數值(Y軸)維持 25% 保護臉部 */
+            object-position: 60% 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
