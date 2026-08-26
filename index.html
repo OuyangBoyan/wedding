@@ -23,7 +23,6 @@
             background-color: var(--morandi-bg);
             color: #4a4a4a;
             scroll-behavior: smooth;
-            /* 允許中文在手機版正常流暢地自適應斷行，徹底防止文字溢出跑版 */
             word-break: normal; 
             overflow-x: hidden;
             width: 100%;
@@ -31,13 +30,10 @@
         .font-eng {
             font-family: 'Cormorant Garamond', serif;
         }
-        /* Mobile wrap optimization (防止智慧型手機自動換行跑版) */
         .no-wrap {
             white-space: nowrap !important;
             display: inline-block;
         }
-        
-        /* Frosted Glass Navbar */
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
@@ -46,13 +42,12 @@
             z-index: 1000;
         }
         
-        /* GPU Accelerated Ultra-sharp Image Fitting */
+        /* 手機版：滿版置中，將焦點往右調至 65%，讓新娘與戒指回到畫面正中央 */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 手機版：對焦點強力往左錨定 (15%)，確保左側的新娘與戒指完整保留 */
-            object-position: 15% 25%;
+            object-position: 65% 25%; 
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -60,14 +55,21 @@
             image-rendering: crisp-edges;
             image-rendering: auto;
         }
-        /* 針對網頁版（寬螢幕）設定：保持您的完美設定，不動！ */
+
+        /* 網頁版（寬螢幕）：完美立體畫框、無黑邊、縮小 5% 並推至最左 (100%) */
         @media (min-width: 768px) {
+            .hero-img-wrapper {
+                transform: scale(0.95);
+                background-color: #fdfaf7; /* 莫蘭迪暖白色，徹底消滅黑邊 */
+                border-radius: 2rem;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+                overflow: hidden;
+            }
             .hero-img-optimized {
                 object-position: 100% 30%; 
             }
         }
 
-        /* Countdown Cards (Mobile Optimized - 防止極小螢幕溢出) */
         .timer-card {
             background: var(--soft-white);
             border-radius: 12px;
@@ -108,7 +110,6 @@
             }
         }
         
-        /* V-Card Style */
         .v-card {
             background: white;
             border-left: 4px solid var(--morandi-gold);
@@ -124,7 +125,6 @@
             }
         }
         
-        /* Smart Fields Animation */
         .smart-field {
             max-height: 0;
             overflow: hidden;
@@ -136,7 +136,6 @@
             opacity: 1;
             margin-top: 1.5rem;
         }
-        /* Form Styling */
         .form-input {
             border: none;
             border-bottom: 1px solid #e2e2e2;
@@ -173,7 +172,6 @@
             100% { background-position: 200% 0; }
         }
         
-        /* Floating Music Vinyl Animation */
         @keyframes rotate-music {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -181,7 +179,6 @@
         .spinning {
             animation: rotate-music 10s linear infinite;
         }
-        /* Petal Canvas Overlay */
         #petal-canvas {
             position: fixed;
             top: 0;
@@ -191,7 +188,6 @@
             z-index: 5;
             pointer-events: none;
         }
-        /* Scroll Reveal Effect */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -205,12 +201,9 @@
 </head>
 <body class="w-full">
 
-    <!-- Canvas for Floating Petals -->
     <canvas id="petal-canvas"></canvas>
 
-    <!-- Floating Background Music Player -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-        <!-- 音樂提醒氣泡：引導點擊 -->
         <div id="music-tip" class="bg-white/95 text-stone-500 border border-brand-gold/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
             點擊播放背景音樂 🎵
         </div>
@@ -220,7 +213,6 @@
         <audio id="bg-music" autoplay loop src="alex-productions-magic-valentines.mp3"></audio>
     </div>
 
-    <!-- Navigation -->
     <nav class="glass-nav fixed top-0 w-full px-3 md:px-12 py-3 flex justify-between items-center">
         <div class="font-eng text-sm md:text-xl font-semibold tracking-widest text-[#d4a373] whitespace-nowrap">
             <span class="md:hidden">O. & Y.</span>
@@ -231,46 +223,38 @@
             <a href="#details" class="hover:text-[#d4a373] transition" data-zh="婚禮詳情" data-en="DETAILS">婚禮詳情</a>
             <a href="#dress-code" class="hover:text-[#d4a373] transition" data-zh="著裝建議" data-en="DRESS CODE">著裝建議</a>
             <a href="#rsvp" class="hover:text-[#d4a373] transition text-gray-700" data-zh="出席回函" data-en="RSVP">出席回函</a>
-            <!-- 靜態雙語切換按鈕 -->
             <button id="lang-toggle-btn" onclick="toggleLanguage()" class="hover:text-[#d4a373] transition text-[#d4a373] border border-[#d4a373]/30 px-2 py-0.5 rounded text-[9px] sm:text-[10px] tracking-normal font-sans">EN</button>
         </div>
     </nav>
 
-    <!-- Hero Section (畫廊留白裱框：徹底解決黑邊與漸層異常) -->
-    <!-- 手機版高度微調至 78vh，強迫系統縮小圖片倍率，網頁版維持您的 100vh 完美設計不動 -->
-    <section class="relative w-full h-[78vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
+    <!-- 手機版高度為 85vh，防止過度縮放；網頁版為 100vh -->
+    <section class="relative w-full h-[85vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
         
-        <!-- 實體圖片與遮罩的共用容器 (手機滿版，網頁版自帶縮小、圓角與高級陰影) -->
-        <div class="relative w-full h-full md:rounded-[2rem] overflow-hidden md:shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex items-end justify-center">
+        <!-- hero-img-wrapper：負責網頁版的完美畫框與縮小效果 -->
+        <div class="hero-img-wrapper relative w-full h-full flex items-end justify-center">
             
-            <!-- 婚紗首頁圖 -->
             <img src="cover.jpg" 
                  alt="Groom & Bride" 
                  class="absolute inset-0 z-0 hero-img-optimized"
                  loading="eager"
                  decoding="sync">
             
-            <!-- 高級漸層遮罩：嚴格鎖死在圖片容器內，底部絕不會溢出形成黑線 -->
+            <!-- 漸層遮罩包在 wrapper 內，不會溢出變成黑邊 -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-10 pointer-events-none"></div>
 
-            <!-- 內容文字區塊（靠下置中，僅英文姓名微縮，其餘文字放大大器） -->
             <div class="w-full max-w-full relative z-20 px-4 pb-12 sm:pb-16 text-center">
-                <!-- 1. Forever Starts with You -->
                 <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-2 opacity-90 tracking-widest uppercase text-white drop-shadow-md animate-pulse">
                     Forever Starts with You
                 </h2>
                 
-                <!-- 2. 中文姓名：歐陽伯彥 & 陳宜函 (顯眼大字號) -->
                 <h3 class="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-[0.2em] mb-1.5 text-white drop-shadow-lg" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
                     歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
                 </h3>
 
-                <!-- 3. 英文姓名：Ou yang Po-yen & Chen Yi han (單獨維持精細小字級) -->
                 <h1 class="font-eng text-xs sm:text-sm md:text-base mb-4 font-light leading-snug whitespace-nowrap tracking-widest text-stone-300 drop-shadow-sm opacity-85">
                     Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
                 </h1>
 
-                <!-- 4. 伯此一生，函你同行 -->
                 <p class="text-sm sm:text-base md:text-2xl tracking-[0.35em] font-light text-[#d4a373] drop-shadow-md" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
                     伯此一生，函你同行
                 </p>
@@ -278,7 +262,6 @@
         </div>
     </section>
 
-    <!-- Countdown Section -->
     <section id="about" class="py-16 md:py-32 px-4 bg-[#fdfaf7] text-center relative z-10 w-full">
         <div class="max-w-4xl mx-auto">
             <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="倒數計時" data-en="THE COUNTDOWN">The Countdown</h3>            
@@ -309,7 +292,7 @@
                 </div>
             </div>
 
-            <!-- 浪漫引言：精美自適應排版 (移除 hidden 設定，確保全平台精準斷行) -->
+            <!-- 浪漫引言：移除隱藏標籤，完美維持自訂換行格式 -->
             <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-400 px-4 text-xs sm:text-sm md:text-base reveal" id="quote-text"
                  data-zh="「遇見你，裝飾了我所有的夢境，<br>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br>把平凡日子過成最珍貴的風景。」"
                  data-en="&ldquo;Meeting you decorated all my dreams,<br> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br> turning ordinary days into the most precious scenery.&rdquo;">
@@ -321,7 +304,6 @@
         </div>
     </section>
 
-    <!-- 🌸 常駐型「最珍貴的風景 (Our Sweet Blessing)」法式拍立得相簿區塊 -->
     <section class="py-12 md:py-20 px-4 bg-[#fdfaf7] relative z-10 w-full overflow-hidden border-t border-stone-100">
         <div class="max-w-4xl mx-auto text-center">
             <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">Our Sweet Blessing</h3>
@@ -356,12 +338,10 @@
         </div>
     </section>
 
-    <!-- Details Section -->
     <section id="details" class="py-16 md:py-32 px-4 sm:px-6 bg-[#fdfaf7] relative z-10 w-full">
         <div class="max-w-3xl mx-auto">
             <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 md:mb-16 text-center uppercase opacity-70 font-semibold" data-zh="婚禮詳情" data-en="WEDDING DETAILS">Wedding Details</h3>
             
-            <!-- 晚宴資訊 V-Card -->
             <div class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
                     <div>
@@ -386,7 +366,6 @@
                         <span data-zh="18:00 準時開席" data-en="18:00 Sharp">18:00 準時開席</span>
                     </p>
                     
-                    <!-- 導航與一鍵規劃路線雙按鈕排版 -->
                     <div class="pt-2 flex flex-wrap gap-x-4 gap-y-2 items-center">
                         <a href="https://maps.google.com/?q=基隆港海產樓" target="_blank" class="inline-flex items-center text-xs tracking-[0.2em] text-[#d4a373] border-b border-[#d4a373]/30 pb-1 hover:border-[#d4a373] transition font-bold font-sans">
                             <i class="fa-regular fa-map mr-2"></i> <span data-zh="GOOGLE MAP 導航" data-en="GOOGLE MAPS">GOOGLE MAP 導航</span>
@@ -397,13 +376,11 @@
                         </a>
                     </div>
                     
-                    <!-- 嵌入 Google 地圖 -->
                     <div class="mt-6 rounded-2xl overflow-hidden shadow-sm border border-stone-200/50 h-56 sm:h-80 w-full">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3611.8906352037107!2d121.74543767605417!3d25.13175853381677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x345d4e135b1c97a7%3A0x64cf5d3a241db1b!2z5Z-66ZqG5riv5rW355Si5qiT!5e0!3m2!1szh-TW!2stw!4v1710000000000" 
                                 class="w-full h-full border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <!-- 交通指引區塊 -->
                     <div class="mt-10 pt-6 border-t border-stone-100">
                         <h4 class="text-xs sm:text-sm tracking-[0.2em] text-[#8da399] flex items-center font-bold uppercase mb-4">
                             <i class="fa-solid fa-map-location-dot mr-2"></i>
@@ -447,7 +424,6 @@
                 </div>
             </div>
 
-            <!-- 服裝色彩建議 V-Card -->
             <div id="dress-code" class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
@@ -492,17 +468,13 @@
         </div>
     </section>
 
-    <!-- RSVP Section -->
     <section id="rsvp" class="py-16 md:py-32 px-4 bg-white relative z-10 w-full">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 xl:gap-16 items-start reveal">
             
-            <!-- 左半部：電子喜帖（Save the date & Details） -->
             <div class="w-full lg:w-1/2 flex flex-col sm:flex-row lg:flex-col gap-6 items-center justify-center">
-                <!-- 1. 封面圖 (Save The Date) -->
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
                     <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('封面圖.jpg')">
                         <img src="封面圖.jpg" alt="Save The Date 封面" class="w-full h-full object-cover">
-                        <!-- 點擊放大提示罩 -->
                         <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-sans tracking-widest gap-2">
                             <i class="fa-solid fa-magnifying-glass-plus"></i> 點擊放大查看
                         </div>
@@ -512,7 +484,6 @@
                     </div>
                 </div>
 
-                <!-- 2. 內頁圖 (Wedding Details) -->
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
                     <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('內頁.png')">
                         <img src="內頁.png" alt="Wedding Details 內頁" class="w-full h-full object-cover">
@@ -526,7 +497,6 @@
                 </div>
             </div>
 
-            <!-- 右半部：精美出席表單欄位 -->
             <div class="w-full lg:w-1/2 bg-white p-6 sm:p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.04)] rounded-[2.5rem] relative overflow-hidden border border-stone-100/50">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4a373] opacity-[0.02] -mr-16 -mt-16 rounded-full"></div>
                 
@@ -537,18 +507,22 @@
                 
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
                     <div class="space-y-8">
+                        
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的大名 NAME *" data-en="YOUR NAME *">您的大名 <span class="font-eng uppercase">NAME</span> *</label>
                             <input type="text" name="entry.1886153940" class="form-input text-sm md:text-base" placeholder="請輸入您的大名" required value="">
                         </div>
+                        
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的聯絡電話 PHONE *" data-en="YOUR PHONE *">您的聯絡電話 <span class="font-eng uppercase">PHONE</span> *</label>
                             <input type="tel" name="entry.2029074728" class="form-input text-sm md:text-base" placeholder="請輸入聯絡電話" required value="">
                         </div>
+                        
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您的Email/Line EMAIL / LINE *" data-en="YOUR EMAIL / LINE *">您的Email/Line <span class="font-eng uppercase">EMAIL / LINE</span> *</label>
                             <input type="text" name="entry.1647990662" class="form-input text-sm md:text-base" placeholder="請輸入您的 Email 或 Line" required value="">
                         </div>
+                        
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="您和新人的關係是？ RELATIONSHIP *" data-en="RELATIONSHIP WITH COUPLE *">您和新人的關係是？ <span class="font-eng uppercase">RELATIONSHIP</span> *</label>
                             <select name="entry.2044940604" class="form-input text-sm md:text-base cursor-pointer bg-transparent" required>
@@ -560,6 +534,7 @@
                                 <option value="共同朋友">共同朋友</option>
                             </select>
                         </div>
+
                         <div>
                             <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否可以參加婚禮呢？ ATTENDANCE *" data-en="WILL YOU ATTEND? *">是否可以參加婚禮呢？ <span class="font-eng uppercase">ATTENDANCE</span> *</label>
                             <div class="flex flex-col space-y-3">
@@ -585,10 +560,12 @@
                                     <input type="number" id="child_guests_input" name="entry.1259066676" class="form-input text-sm" placeholder="兒童人數" min="0" value="0">
                                 </div>
                             </div>
+
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否需要兒童座椅？需要幾張呢？ HIGH CHAIR" data-en="DO YOU NEED HIGH CHAIRS? HOW MANY?">是否需要兒童座椅？需要幾張呢？ <span class="font-eng uppercase">HIGH CHAIR</span></label>
                                 <input type="text" name="entry.1887387302" class="form-input text-sm" placeholder="如需要請註明數量 (如：1張)" value="">
                             </div>
+                            
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要安排空位給使用輪椅? WHEELCHAIR" data-en="WHEELCHAIR SPACE NEEDED?">是否需要安排空位給使用輪椅? <span class="font-eng uppercase">WHEELCHAIR</span></label>
                                 <div class="flex space-x-12">
@@ -602,10 +579,12 @@
                                     </label>
                                 </div>
                             </div>
+
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="是否準備素食？需要幾份呢？ VEGETARIAN" data-en="VEGETARIAN MEALS NEEDED? HOW MANY?">是否準備素食？需要幾份呢？ <span class="font-eng uppercase">VEGETARIAN</span></label>
                                 <input type="text" name="entry.1945371672" class="form-input text-sm" placeholder="如需要請註明份數 (如：1份)" value="">
                             </div>
+
                             <div>
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-3 font-bold" data-zh="是否需要寄送紙本喜帖給您？ PAPER INVITATION" data-en="SEND PHYSICAL INVITATION CARD?">是否需要寄送紙本喜帖給您？ <span class="font-eng uppercase">PAPER INVITATION</span></label>
                                 <div class="flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:space-x-12">
@@ -619,6 +598,7 @@
                                     </label>
                                 </div>
                             </div>
+
                             <div id="address_smart_field" class="smart-field">
                                 <label class="text-[10px] tracking-widest text-gray-400 block mb-1 font-bold" data-zh="請提供您的收件資料（收件人/地址/電話） SHIPPING DETAILS" data-en="SHIPPING DETAILS (RECIPIENT/ADDRESS/PHONE)">請提供您的收件資料（收件人/地址/電話） <span class="font-eng uppercase">SHIPPING DETAILS</span></label>
                                 <textarea name="entry.2093466386" id="form-address-field" rows="2" class="form-input text-sm md:text-base font-sans" placeholder="請填寫：收件人、郵遞區號 + 地址、電話"></textarea>
@@ -636,7 +616,6 @@
                     </div>
                 </form>
                 
-                <!-- Success Box -->
                 <div id="success_msg" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center overflow-y-auto text-center p-6 sm:p-10 z-20">
                     <div class="w-16 h-16 sm:w-20 sm:h-20 bg-[#d4a373] rounded-full flex items-center justify-center text-white mb-6 shadow-lg shrink-0">
                         <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
@@ -653,7 +632,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 md:py-16 bg-[#8da399] text-white text-center relative z-10 w-full">
         <div class="max-w-4xl mx-auto px-6">
             <p class="font-eng tracking-[0.2em] sm:tracking-[0.4em] text-xs md:text-sm opacity-90 uppercase mb-1">歐陽伯彥 & 陳宜函</p>
@@ -662,15 +640,12 @@
         </div>
     </footer>
 
-    <!-- 相本 Lightbox 燈箱效果 (點擊放大) -->
     <div id="lightbox-modal" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-black/95 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
         <button class="absolute top-6 right-6 text-white text-3xl hover:text-brand-gold">&times;</button>
         <img id="lightbox-img" src="" alt="Zoomed view" class="max-w-full max-h-full p-4 rounded-3xl object-contain transform scale-95 transition-transform duration-300">
     </div>
 
-    <!-- JavaScript 邏輯 -->
     <script>
-        // --- Countdown Timer ---
         const targetDate = new Date("Dec 12, 2026 18:00:00").getTime();
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -694,7 +669,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // --- UI Logic: Smart Fields ---
         function handleAttendanceChange(isAttending) {
             var target = document.getElementById('banquet_smart_fields');
             var adultInput = document.getElementById('adult_guests_input');
@@ -724,7 +698,6 @@
             }
         }
 
-        // --- Background Music Control ---
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
@@ -761,7 +734,6 @@
         document.addEventListener('click', autoPlayOnFirstInteraction);
         document.addEventListener('touchstart', autoPlayOnFirstInteraction);
 
-        // --- Form Submission Logic ---
         var submitted = false;
         
         document.getElementById('weddingForm').addEventListener('submit', function() {
@@ -781,7 +753,6 @@
             }, 500);
         }
 
-        // --- 🌸 Canvas Petals Animation ---
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -850,7 +821,6 @@
             animatePetals();
         };
 
-        // --- ✨ Scroll Reveal Logic ---
         const revealElements = document.querySelectorAll('.reveal');
         const checkReveal = () => {
             const triggerBottom = window.innerHeight * 0.85;
@@ -864,7 +834,6 @@
         window.addEventListener('scroll', checkReveal);
         checkReveal();
 
-        // --- 🌐 Bilingual Language Switcher Logic ---
         let currentLanguage = 'zh';
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
@@ -890,7 +859,6 @@
             document.title = currentLanguage === 'zh' ? 'Ou yang Po-yen & Chen Yi han 婚禮邀請函' : 'Ou yang Po-yen & Chen Yi han Wedding Invitation';
         }
 
-        // --- 🔍 Lightbox Logic ---
         function openLightbox(imgSrc) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
