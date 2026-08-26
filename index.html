@@ -231,7 +231,7 @@
     </nav>
 
     <!-- Hero Section (調整靠下排列 items-end，搭配底部柔和漸層，完全避開擋到照片中的臉部) -->
-    <section class="hero-bg flex items-end justify-center text-center text-white px-4 pb-12 sm:pb-16 md:pb-20">
+    <section class="hero-bg flex items-end justify-center text-center text-white px-4 pb-10 sm:pb-14 md:pb-16">
         <!-- 婚紗首頁圖：cover.jpg 滿版呈現 -->
         <img src="cover.jpg" 
              alt="Groom & Bride" 
@@ -240,27 +240,27 @@
              decoding="sync">
         
         <!-- 高級漸層影院遮罩層：專門加深底部文字區，同時保持上方新人臉部區域完全清晰 -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-10"></div>
 
-        <!-- 內容文字區塊（靠下置中，縮小英文尺寸並加入中文姓名） -->
+        <!-- 內容文字區塊（靠下置中，僅英文姓名微縮，其餘文字放大大器） -->
         <div class="w-full max-w-full overflow-hidden relative z-20 px-2">
-            <!-- 1. Forever Starts with You -->
-            <h2 class="font-eng italic text-xs sm:text-sm md:text-xl mb-2 opacity-90 tracking-widest uppercase text-white shadow-sm animate-pulse">
+            <!-- 1. Forever Starts with You (恢復大氣字號) -->
+            <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-2 opacity-90 tracking-widest uppercase text-white drop-shadow-md animate-pulse">
                 Forever Starts with You
             </h2>
             
-            <!-- 2. 中文姓名：歐陽伯彥 & 陳宜函 (放到英文上面) -->
-            <h3 class="text-xl sm:text-2xl md:text-3xl font-medium tracking-[0.25em] mb-1 text-white drop-shadow-md" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
+            <!-- 2. 中文姓名：歐陽伯彥 & 陳宜函 (顯眼大字號) -->
+            <h3 class="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-[0.2em] mb-1.5 text-white drop-shadow-lg" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
                 歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
             </h3>
 
-            <!-- 3. 英文姓名：Ou yang Po-yen & Chen Yi han (字體調小) -->
-            <h1 class="font-eng text-xs sm:text-base md:text-xl mb-4 font-light leading-snug whitespace-nowrap tracking-wider text-stone-200 drop-shadow-sm opacity-90">
+            <!-- 3. 英文姓名：Ou yang Po-yen & Chen Yi han (單獨維持精細小字級) -->
+            <h1 class="font-eng text-xs sm:text-sm md:text-base mb-4 font-light leading-snug whitespace-nowrap tracking-widest text-stone-300 drop-shadow-sm opacity-85">
                 Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
             </h1>
 
-            <!-- 4. 伯此一生，函你同行 -->
-            <p class="text-xs sm:text-sm md:text-lg tracking-[0.4em] font-light opacity-95 text-[#d4a373] drop-shadow-sm" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
+            <!-- 4. 伯此一生，函你同行 (恢復清晰大字號) -->
+            <p class="text-sm sm:text-base md:text-2xl tracking-[0.35em] font-light text-[#d4a373] drop-shadow-md" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
                 伯此一生，函你同行
             </p>
         </div>
