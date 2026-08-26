@@ -53,7 +53,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 60% 25%;
+            /* 修正手機版：改回正中央 center，確保新郎新娘兩人都安全入鏡 */
+            object-position: center 25%; 
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -63,8 +64,9 @@
         }
         @media (min-width: 768px) {
             .hero-img-optimized {
+                /* 網頁版：維持您最滿意的往左移與縮小高級畫框感 */
                 object-position: 100% 30%; 
-                transform: scale(0.95); /* 高級感縮小畫框 */
+                transform: scale(0.95); 
                 border-radius: 1.5rem;
                 box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             }
