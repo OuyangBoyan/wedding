@@ -52,6 +52,21 @@
             height: 100vh;
             width: 100%;
             overflow: hidden;
+            /* 新增：將同張照片作為底圖，填補縮小後產生的黑邊空白 */
+            background-image: url('cover.jpg');
+            background-size: cover;
+            background-position: 100% 30%;
+        }
+
+        /* 新增：高級毛玻璃層 (覆蓋在背景圖上，將黑邊轉化為唯美的背景延伸) */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: -10%; /* 往外擴展避免邊緣漏光 */
+            background: rgba(0, 0, 0, 0.4); /* 壓暗底層，完美凸顯主照片 */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: -1; /* 確保疊加在底圖之上、主照片之下 */
         }
         
         /* GPU Accelerated Ultra-sharp Image Fitting */
@@ -73,12 +88,11 @@
             .hero-img-optimized {
                 /* 100% 靠右對齊（畫面往左推），30% 控制垂直位置確保臉部不被裁切 */
                 object-position: 100% 30%; 
-                /* 縮小 5%，讓人物更精緻且騰出空間往左移 */
+                /* 縮小 5%，保持您喜歡的精緻大小 */
                 transform: scale(0.95);
-            }
-            .hero-bg {
-                /* 微調網頁版背景底色，避免縮小後邊緣露出突兀的顏色 */
-                background-color: #000;
+                /* 新增：加上圓角與柔和陰影，讓畫面變成精美的藝廊畫框，完美解決黑邊 */
+                border-radius: 16px;
+                box-shadow: 0 25px 60px rgba(0,0,0,0.8);
             }
         }
         
