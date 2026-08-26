@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ou yang Po-yen & Chen Yi han 婚禮邀請函</title>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;1,400&family=Noto+Serif+TC:wght=300;500;700&display=swap" rel="stylesheet">
+    <!-- Fonts (移除手寫字體，回歸乾淨的明體與精品英文) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;1,400&family=Noto+Serif+TC:wght=300;400;500;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for Elegant Icons -->
@@ -34,6 +34,8 @@
             white-space: nowrap !important;
             display: inline-block;
         }
+        
+        /* Frosted Glass Navbar */
         .glass-nav {
             background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(15px);
@@ -42,34 +44,29 @@
             z-index: 1000;
         }
         
-        /* 手機版：滿版置中，將焦點往右調至 65%，讓新娘與戒指回到畫面正中央 */
+        /* GPU Accelerated Ultra-sharp Image Fitting */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 65% 25%; 
+            /* 手機版：對準 65% (新娘偏右) 來確保人物置中不裁切 */
+            object-position: 65% 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
-            image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            image-rendering: auto;
         }
-
-        /* 網頁版（寬螢幕）：完美立體畫框、無黑邊、縮小 5% 並推至最左 (100%) */
+        
+        /* 針對網頁版（寬螢幕）設定：畫框縮小 + 讓圖片往左推 */
         @media (min-width: 768px) {
-            .hero-img-wrapper {
-                transform: scale(0.95);
-                background-color: #fdfaf7; /* 莫蘭迪暖白色，徹底消滅黑邊 */
-                border-radius: 2rem;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-                overflow: hidden;
+            .hero-wrapper {
+                transform: scale(0.95); /* 整個遮罩跟著照片一起縮小，完美無黑邊 */
             }
             .hero-img-optimized {
                 object-position: 100% 30%; 
             }
         }
 
+        /* Countdown Cards (Mobile Optimized) */
         .timer-card {
             background: var(--soft-white);
             border-radius: 12px;
@@ -80,122 +77,75 @@
             position: relative;
         }                
         @media (min-width: 375px) {
-            .timer-card {
-                padding: 0.75rem 0.25rem;
-                min-width: 68px;
-            }
+            .timer-card { padding: 0.75rem 0.25rem; min-width: 68px; }
+            .timer-divider { height: 25px; margin: 0 6px; }
         }
         @media (min-width: 768px) {
-            .timer-card {
-                padding: 1.5rem 1rem;
-                min-width: 95px;
-            }
+            .timer-card { padding: 1.5rem 1rem; min-width: 95px; }
+            .timer-divider { height: 45px; margin: 0 15px; }
         }
         .timer-divider {
-            width: 1px;
-            height: 20px;
+            width: 1px; height: 20px;
             background: rgba(212, 163, 115, 0.3);
             margin: 0 3px;
-        }                
-        @media (min-width: 375px) {
-            .timer-divider {
-                height: 25px;
-                margin: 0 6px;
-            }
-        }
-        @media (min-width: 768px) {
-            .timer-divider {
-                height: 45px;
-                margin: 0 15px;
-            }
         }
         
+        /* V-Card Style */
         .v-card {
             background: white;
-            border-left: 4px solid var(--morandi-gold);
+            border-left: 3px solid var(--morandi-gold);
             padding: 1.25rem;
             box-shadow: 0 15px 40px rgba(0,0,0,0.02);
             margin-bottom: 1.5rem;
             border-radius: 0 16px 16px 0;
         }
         @media (min-width: 768px) {
-            .v-card {
-                padding: 2rem;
-                margin-bottom: 2rem;
-            }
+            .v-card { padding: 2rem; margin-bottom: 2rem; }
         }
-        
+
+        /* Form Styling */
         .smart-field {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
         }
         .active-field {
-            max-height: 1000px;
-            opacity: 1;
-            margin-top: 1.5rem;
+            max-height: 1000px; opacity: 1; margin-top: 1.5rem;
         }
         .form-input {
-            border: none;
-            border-bottom: 1px solid #e2e2e2;
-            padding: 0.75rem 0;
-            width: 100%;
-            background: transparent;
-            transition: border-color 0.3s;
-            border-radius: 0;
-            appearance: none;
+            border: none; border-bottom: 1px solid #e2e2e2;
+            padding: 0.75rem 0; width: 100%; background: transparent;
+            transition: border-color 0.3s; border-radius: 0; appearance: none;
         }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--morandi-gold);
-        }
+        .form-input:focus { outline: none; border-color: var(--morandi-gold); }
         .submit-btn {
-            background-color: var(--morandi-gold);
-            color: white;
-            padding: 1rem 3rem;
-            letter-spacing: 3px;
-            transition: all 0.4s;
+            background-color: var(--morandi-gold); color: white;
+            padding: 1rem 3rem; letter-spacing: 3px; transition: all 0.4s;
             box-shadow: 0 10px 20px -10px rgba(212, 163, 115, 0.5);
         }
+        
+        /* Shimmer and Vinyl Animation */
         .shimmer {
             background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
             background-size: 200% 100%;
             animation: shimmer 4s infinite linear;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            pointer-events: none;
-            border-radius: 12px;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none; border-radius: 12px;
         }
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes rotate-music { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spinning { animation: rotate-music 10s linear infinite; }
         
-        @keyframes rotate-music {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .spinning {
-            animation: rotate-music 10s linear infinite;
-        }
-        #petal-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            pointer-events: none;
-        }
+        /* Scroll Reveal Effect */
         .reveal {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 0; transform: translateY(30px);
             transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        #petal-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5; pointer-events: none;
         }
     </style>
 </head>
@@ -227,44 +177,46 @@
         </div>
     </nav>
 
-    <!-- 手機版高度為 85vh，防止過度縮放；網頁版為 100vh -->
+    <!-- Hero Section: 手機高度 85vh 確保圖片完整不裁切，電腦 100vh 搭配畫框縮小 -->
     <section class="relative w-full h-[85vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
         
-        <!-- hero-img-wrapper：負責網頁版的完美畫框與縮小效果 -->
-        <div class="hero-img-wrapper relative w-full h-full flex items-end justify-center">
-            
-            <img src="cover.jpg" 
-                 alt="Groom & Bride" 
-                 class="absolute inset-0 z-0 hero-img-optimized"
-                 loading="eager"
-                 decoding="sync">
-            
-            <!-- 漸層遮罩包在 wrapper 內，不會溢出變成黑邊 -->
+        <div class="hero-wrapper relative w-full h-full md:rounded-[2rem] overflow-hidden md:shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex items-end justify-center transition-transform duration-500">
+            <!-- 高級漸層遮罩：嚴格鎖死在圖片容器內，底部絕不會溢出形成黑線 -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-10 pointer-events-none"></div>
 
+            <!-- 內容文字區塊（靠下置中，將文字整體縮小，提升精品感） -->
             <div class="w-full max-w-full relative z-20 px-4 pb-12 sm:pb-16 text-center">
-                <h2 class="font-eng italic text-sm sm:text-base md:text-2xl mb-2 opacity-90 tracking-widest uppercase text-white drop-shadow-md animate-pulse">
+                <!-- 1. Forever Starts with You -->
+                <h2 class="font-eng italic text-xs sm:text-sm md:text-lg mb-2 opacity-90 tracking-widest uppercase text-white drop-shadow-md animate-pulse">
                     Forever Starts with You
                 </h2>
                 
-                <h3 class="text-2xl sm:text-3xl md:text-5xl font-semibold tracking-[0.2em] mb-1.5 text-white drop-shadow-lg" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
+                <!-- 2. 中文姓名：歐陽伯彥 & 陳宜函 (字級縮小精緻化) -->
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-[0.2em] mb-1.5 text-white drop-shadow-lg" data-zh="歐陽伯彥 <span class='text-[#d4a373] font-light'>&amp;</span> 陳宜函" data-en="Ou yang Po-yen <span class='text-[#d4a373] font-light'>&amp;</span> Chen Yi han">
                     歐陽伯彥 <span class="text-[#d4a373] font-light">&</span> 陳宜函
                 </h3>
 
-                <h1 class="font-eng text-xs sm:text-sm md:text-base mb-4 font-light leading-snug whitespace-nowrap tracking-widest text-stone-300 drop-shadow-sm opacity-85">
+                <!-- 3. 英文姓名：Ou yang Po-yen & Chen Yi han -->
+                <h1 class="font-eng text-[10px] sm:text-xs md:text-sm mb-4 font-light leading-snug whitespace-nowrap tracking-widest text-stone-300 drop-shadow-sm opacity-85">
                     Ou yang Po-yen <span class="italic text-[#d4a373]">&</span> Chen Yi han
                 </h1>
 
-                <p class="text-sm sm:text-base md:text-2xl tracking-[0.35em] font-light text-[#d4a373] drop-shadow-md" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
+                <!-- 4. 伯此一生，函你同行 -->
+                <p class="text-xs sm:text-sm md:text-base tracking-[0.35em] font-light text-[#d4a373] drop-shadow-md" data-zh="伯此一生，函你同行" data-en="A Lifetime Together, A Perfect Love.">
                     伯此一生，函你同行
                 </p>
             </div>
         </div>
     </section>
 
+    <!-- Countdown Section -->
     <section id="about" class="py-16 md:py-32 px-4 bg-[#fdfaf7] text-center relative z-10 w-full">
         <div class="max-w-4xl mx-auto">
-            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="倒數計時" data-en="THE COUNTDOWN">The Countdown</h3>            
+            <!-- 雙語小標題 (縮小尺寸、回歸乾淨高級排版) -->
+            <div class="text-center mb-10 md:mb-14 reveal">
+                <h3 class="text-base md:text-xl font-medium tracking-[0.2em] text-stone-700 mb-1" data-zh="倒數計時" data-en="THE COUNTDOWN">倒數計時</h3>
+                <p class="font-eng text-[#d4a373] text-[9px] md:text-[10px] tracking-[0.4em] uppercase opacity-80">The Countdown</p>
+            </div>
             
             <div id="countdown" class="flex justify-center items-center flex-nowrap reveal mx-auto max-w-full">
                 <div class="timer-card">
@@ -292,8 +244,8 @@
                 </div>
             </div>
 
-            <!-- 浪漫引言：移除隱藏標籤，完美維持自訂換行格式 -->
-            <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-400 px-4 text-xs sm:text-sm md:text-base reveal" id="quote-text"
+            <!-- 浪漫引言：精美自適應排版 (移除手寫體) -->
+            <div class="mt-12 md:mt-24 max-w-xl mx-auto italic leading-loose text-gray-500 px-4 text-xs sm:text-sm md:text-sm reveal" id="quote-text"
                  data-zh="「遇見你，裝飾了我所有的夢境，<br>也讓未來有了最溫柔的方向。<br><br>在未來的漫長歲月裡，我們攜手並進，<br>把平凡日子過成最珍貴的風景。」"
                  data-en="&ldquo;Meeting you decorated all my dreams,<br> and gave the future its most tender direction.<br><br>In the long years to come, we will walk hand in hand,<br> turning ordinary days into the most precious scenery.&rdquo;">
                 「遇見你，裝飾了我所有的夢境，<br>
@@ -304,32 +256,37 @@
         </div>
     </section>
 
+    <!-- 🌸 常駐型「最珍貴的風景 (Our Sweet Blessing)」法式拍立得相簿區塊 -->
     <section class="py-12 md:py-20 px-4 bg-[#fdfaf7] relative z-10 w-full overflow-hidden border-t border-stone-100">
         <div class="max-w-4xl mx-auto text-center">
-            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 uppercase opacity-70 font-semibold" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">Our Sweet Blessing</h3>
+            <!-- 雙語小標題 (縮小尺寸、回歸乾淨高級排版) -->
+            <div class="text-center mb-10 md:mb-14 reveal">
+                <h3 class="text-base md:text-xl font-medium tracking-[0.2em] text-stone-700 mb-1" data-zh="最珍貴的風景" data-en="OUR SWEET BLESSING">最珍貴的風景</h3>
+                <p class="font-eng text-[#d4a373] text-[9px] md:text-[10px] tracking-[0.4em] uppercase opacity-80">Our Sweet Blessing</p>
+            </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 md:gap-16 justify-items-center">
-                <!-- 第一張拍立得 (12.12 氣球照) -->
+                <!-- 第一張拍立得 (氣球照) -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
                     <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform -rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-1.jpg')">
                         <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
                             <img src="daughter-1.jpg" alt="12.12，與你相約幸福" class="w-full h-full object-cover">
                         </div>
                         <div class="mt-4 px-2">
-                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「12.12，與你相約幸福」" data-en="&ldquo;We are getting married&rdquo;">「12.12，與你相約幸福」</p>
+                            <p class="font-medium text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「12.12，與你相約幸福」" data-en="&ldquo;We are getting married&rdquo;">「12.12，與你相約幸福」</p>
                             <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">We are getting married</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 第二張拍立得 (復古皮箱照) -->
+                <!-- 第二張拍立得 (皮箱照) -->
                 <div class="reveal group w-full max-w-[290px] md:max-w-[320px]">
                     <div class="bg-white p-3 pb-6 rounded-2xl shadow-[0_15px_40px_-15px_rgba(212,163,115,0.25)] border border-[#d4a373]/10 transform rotate-1 group-hover:rotate-0 group-hover:scale-[1.03] transition-all duration-500 cursor-pointer" onclick="openLightbox('daughter-2 (2).jpg')">
                         <div class="aspect-[3/4] overflow-hidden rounded-xl bg-stone-50 border border-stone-100">
                             <img src="daughter-2 (2).jpg" alt="提著行囊，踏上未來旅程" class="w-full h-full object-cover">
                         </div>
                         <div class="mt-4 px-2">
-                            <p class="font-bold text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「提著行囊，踏上未來旅程」" data-en="&ldquo;A lifetime of adventures together&rdquo;">「提著行囊，踏上未來旅程」</p>
+                            <p class="font-medium text-xs sm:text-sm text-stone-600 tracking-widest font-sans" data-zh="「提著行囊，踏上未來旅程」" data-en="&ldquo;A lifetime of adventures together&rdquo;">「提著行囊，踏上未來旅程」</p>
                             <p class="font-eng text-[9px] sm:text-[10px] text-stone-400 italic mt-1">A lifetime of adventures together</p>
                         </div>
                     </div>
@@ -338,33 +295,30 @@
         </div>
     </section>
 
+    <!-- Details Section -->
     <section id="details" class="py-16 md:py-32 px-4 sm:px-6 bg-[#fdfaf7] relative z-10 w-full">
         <div class="max-w-3xl mx-auto">
-            <h3 class="font-eng text-[#d4a373] text-[10px] md:text-xs tracking-[0.5em] mb-12 md:mb-16 text-center uppercase opacity-70 font-semibold" data-zh="婚禮詳情" data-en="WEDDING DETAILS">Wedding Details</h3>
+            <!-- 雙語小標題 (縮小尺寸、回歸乾淨高級排版) -->
+            <div class="text-center mb-10 md:mb-14 reveal">
+                <h3 class="text-base md:text-xl font-medium tracking-[0.2em] text-stone-700 mb-1" data-zh="婚禮詳情" data-en="WEDDING DETAILS">婚禮詳情</h3>
+                <p class="font-eng text-[#d4a373] text-[9px] md:text-[10px] tracking-[0.4em] uppercase opacity-80">Wedding Details</p>
+            </div>
             
             <div class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
                     <div>
-                        <h4 class="text-lg md:text-2xl font-bold tracking-widest" data-zh="【 晚宴資訊 】" data-en="【 Banquet Info 】">【 晚宴資訊 】</h4>
-                        <p class="font-eng text-gray-400 italic text-[10px] md:text-xs tracking-widest uppercase mt-1">The Wedding Banquet</p>
+                        <!-- V-card 標題同步變為精緻縮小版 -->
+                        <h4 class="text-base md:text-lg font-bold tracking-widest text-stone-700" data-zh="【 晚宴資訊 】" data-en="【 Banquet Info 】">【 晚宴資訊 】</h4>
+                        <p class="font-eng text-gray-400 italic text-[9px] md:text-[10px] tracking-widest uppercase mt-1">The Wedding Banquet</p>
                     </div>
                     <div class="text-[#d4a373] font-bold text-xs md:text-lg border-l md:border-l-0 pl-4 md:pl-0 border-[#d4a373]">
                         <span class="no-wrap">2026.12.12 (SAT)</span>
                     </div>
                 </div>
                 <div class="space-y-4 text-gray-500 text-xs md:text-base leading-relaxed">
-                    <p>
-                        <span class="font-bold text-gray-700" data-zh="地點：" data-en="Venue: ">地點：</span>
-                        <span class="no-wrap" data-zh="基隆港海產樓" data-en="Keelung Port Seafood Restaurant">基隆港海產樓</span>
-                    </p>
-                    <p>
-                        <span class="font-bold text-gray-700" data-zh="地址：" data-en="Address: ">地址：</span>
-                        <span data-zh="基隆市信義區信二路 207 號" data-en="No. 207, Xin 2nd Rd., Xinyi Dist., Keelung City">基隆市信義區信二路 207 號</span>
-                    </p>
-                    <p>
-                        <span class="font-bold text-gray-700" data-zh="時間：" data-en="Time: ">時間：</span>
-                        <span data-zh="18:00 準時開席" data-en="18:00 Sharp">18:00 準時開席</span>
-                    </p>
+                    <p><span class="font-medium text-stone-600" data-zh="地點：" data-en="Venue: ">地點：</span><span class="no-wrap" data-zh="基隆港海產樓" data-en="Keelung Port Seafood Restaurant">基隆港海產樓</span></p>
+                    <p><span class="font-medium text-stone-600" data-zh="地址：" data-en="Address: ">地址：</span><span data-zh="基隆市信義區信二路 207 號" data-en="No. 207, Xin 2nd Rd., Xinyi Dist., Keelung City">基隆市信義區信二路 207 號</span></p>
+                    <p><span class="font-medium text-stone-600" data-zh="時間：" data-en="Time: ">時間：</span><span data-zh="18:00 準時開席" data-en="18:00 Sharp">18:00 準時開席</span></p>
                     
                     <div class="pt-2 flex flex-wrap gap-x-4 gap-y-2 items-center">
                         <a href="https://maps.google.com/?q=基隆港海產樓" target="_blank" class="inline-flex items-center text-xs tracking-[0.2em] text-[#d4a373] border-b border-[#d4a373]/30 pb-1 hover:border-[#d4a373] transition font-bold font-sans">
@@ -383,37 +337,36 @@
 
                     <div class="mt-10 pt-6 border-t border-stone-100">
                         <h4 class="text-xs sm:text-sm tracking-[0.2em] text-[#8da399] flex items-center font-bold uppercase mb-4">
-                            <i class="fa-solid fa-map-location-dot mr-2"></i>
-                            <span data-zh="交通指引" data-en="TRANSPORTATION">交通指引</span>
+                            <i class="fa-solid fa-map-location-dot mr-2"></i> <span data-zh="交通指引" data-en="TRANSPORTATION">交通指引</span>
                         </h4>
                         <div class="bg-gray-50 px-4 sm:px-6 py-2 rounded-2xl text-xs md:text-sm leading-relaxed text-gray-500 border border-stone-100">
                             <div class="py-2 space-y-4">
                                 <div>
-                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                    <p class="font-medium text-stone-600 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-train text-[#8da399]"></i> <span data-zh="台鐵" data-en="Railway (TRA)">台鐵</span>
                                     </p>
                                     <p data-zh="搭乘台鐵至「基隆車站」，出站後轉乘計程車約 5–10 分鐘即可抵達會場。" data-en="Take the train to Keelung Station, then take a taxi for about 5-10 minutes to the venue.">搭乘台鐵至「<span class="no-wrap">基隆車站</span>」，出站後轉乘計程車約 <span class="no-wrap">5–10 分鐘</span>即可抵達會場。</p>
                                 </div>
                                 <div class="border-t border-gray-200/50 pt-3">
-                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                    <p class="font-medium text-stone-600 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-bus text-[#8da399]"></i> <span data-zh="國道客運" data-en="Intercity Bus">國道客運</span>
                                     </p>
                                     <p data-zh="可搭乘往「基隆」方向之國道客運等路線，至「基隆車站」下車後，再轉乘計程車前往會場。" data-en="Take a highway bus towards Keelung, get off at Keelung Station, and take a taxi to the venue.">可搭乘往「基隆」方向之國道客運等路線，至「<span class="no-wrap">基隆車站</span>」下車後，再轉乘計程車前往會場。</p>
                                 </div>
                                 <div class="border-t border-gray-200/50 pt-3">
-                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                    <p class="font-medium text-stone-600 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-arrows-spin text-[#8da399]"></i> <span data-zh="在地轉乘 (公車/步行)" data-en="Local Transfer (Bus/Walk)">在地轉乘 (公車/步行)</span>
                                     </p>
                                     <p data-zh="於基隆車站周邊可轉乘市區公車前往信二路一帶（基隆市公車 202、203、204 在信義區公所站下車即可抵達），或依 Google 地圖導航步行／短程計程車前往會場。" data-en="Transfer to city buses near Keelung Station to Xin 2nd Road (Take Keelung City Bus 202, 203, or 204 and get off at Xinyi District Office Station to arrive), or walk/take a short taxi ride using Google Maps.">於<span class="no-wrap">基隆車站</span>周邊可轉乘市區公車前往<span class="no-wrap">信二路</span>一帶（基隆市公車 202、203、204 在信義區公所站下車即可抵達），或依 Google 地圖導航步行／短程計程車前往會場。</p>
                                 </div>
                                 <div class="border-t border-gray-200/50 pt-3">
-                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                    <p class="font-medium text-stone-600 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-car text-[#8da399]"></i> <span data-zh="自行開車" data-en="By Car">自行開車</span>
                                     </p>
                                     <p data-zh="建議直接導航「基隆港海產樓」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車." data-en="Navigate directly to Keelung Port Seafood Restaurant. After exiting the Keelung end of the highway, turn right onto Xin 2nd Rd. and drive straight for about 800 meters to reach the venue. Parking is available nearby, please arrive early.">建議直接導航「<span class="no-wrap">基隆港海產樓</span>」，行駛出高速公路基隆端後，在信二路右轉直行約 800 公尺抵達會館。現場周邊設有停車空間，建議提早抵達以利停車。</p>
                                 </div>
                                 <div class="border-t border-gray-200/50 pt-3">
-                                    <p class="font-bold text-gray-700 flex items-center gap-2 mb-1 text-xs sm:text-sm">
+                                    <p class="font-medium text-stone-600 flex items-center gap-2 mb-1 text-xs sm:text-sm">
                                         <i class="fa-solid fa-taxi text-[#8da399]"></i> <span data-zh="計程車 / Uber" data-en="Taxi / Uber">計程車 / Uber</span>
                                     </p>
                                     <p data-zh="直接輸入目的地「基隆港海產樓」即可抵達，為最便利之方式。" data-en="Enter Keelung Port Seafood Restaurant as the destination for the most convenient ride.">直接輸入目的地「<span class="no-wrap">基隆港海產樓</span>」即可抵達，為最便利之方式。</p>
@@ -424,11 +377,12 @@
                 </div>
             </div>
 
+            <!-- 服裝色彩建議 V-Card -->
             <div id="dress-code" class="v-card reveal">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
-                        <h4 class="text-lg md:text-2xl font-bold tracking-widest" data-zh="【 服裝色彩建議 】" data-en="【 Dress Code Suggestions 】">【 服裝色彩建議 】</h4>
-                        <p class="font-eng text-gray-400 italic text-[10px] md:text-xs tracking-widest uppercase mt-1">Dress Code Suggestions</p>
+                        <h4 class="text-base md:text-lg font-bold tracking-widest text-stone-700" data-zh="【 服裝色彩建議 】" data-en="【 Dress Code Suggestions 】">【 服裝色彩建議 】</h4>
+                        <p class="font-eng text-gray-400 italic text-[9px] md:text-[10px] tracking-widest uppercase mt-1">Dress Code Suggestions</p>
                     </div>
                 </div>
                 <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-6 md:mb-8 tracking-wider"
@@ -440,28 +394,23 @@
                 <div class="grid grid-cols-5 gap-1 sm:gap-6 text-center max-w-lg mx-auto">
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #2D2D2D;"></div>
-                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="黑" data-en="Black">黑</p>
-                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Black</p>
+                        <p class="font-medium text-[10px] md:text-sm text-stone-600 mt-2" data-zh="黑" data-en="Black">黑</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-stone-200 shadow-md" style="background-color: #F7F5F0;"></div>
-                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="白" data-en="White">白</p>
-                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">White</p>
+                        <p class="font-medium text-[10px] md:text-sm text-stone-600 mt-2" data-zh="白" data-en="White">白</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8D9399;"></div>
-                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="灰" data-en="Grey">灰</p>
-                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Grey</p>
+                        <p class="font-medium text-[10px] md:text-sm text-stone-600 mt-2" data-zh="灰" data-en="Grey">灰</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #D0B8A8;"></div>
-                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="奶茶" data-en="Oatmeal">奶茶</p>
-                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Oatmeal</p>
+                        <p class="font-medium text-[10px] md:text-sm text-stone-600 mt-2" data-zh="奶茶" data-en="Oatmeal">奶茶</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <div class="w-10 h-10 md:w-16 md:h-16 rounded-full border-2 border-white shadow-md" style="background-color: #8B4A4A;"></div>
-                        <p class="font-bold text-[10px] md:text-sm text-stone-600 mt-2" data-zh="暗紅" data-en="Burgundy">暗紅</p>
-                        <p class="font-eng text-[8px] md:text-xs text-stone-400 italic">Terracotta</p>
+                        <p class="font-medium text-[10px] md:text-sm text-stone-600 mt-2" data-zh="暗紅" data-en="Burgundy">暗紅</p>
                     </div>
                 </div>
             </div>
@@ -471,6 +420,7 @@
     <section id="rsvp" class="py-16 md:py-32 px-4 bg-white relative z-10 w-full">
         <div class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-10 xl:gap-16 items-start reveal">
             
+            <!-- 左半部：電子喜帖（Save the date & Details） -->
             <div class="w-full lg:w-1/2 flex flex-col sm:flex-row lg:flex-col gap-6 items-center justify-center">
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
                     <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('封面圖.jpg')">
@@ -497,14 +447,20 @@
                 </div>
             </div>
 
+            <!-- 右半部：精美出席表單欄位 -->
             <div class="w-full lg:w-1/2 bg-white p-6 sm:p-10 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.04)] rounded-[2.5rem] relative overflow-hidden border border-stone-100/50">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-[#d4a373] opacity-[0.02] -mr-16 -mt-16 rounded-full"></div>
                 
-                <h3 class="text-xl md:text-3xl font-bold text-center mb-2 tracking-widest text-gray-800" data-zh="出席回函" data-en="RSVP">出席回函</h3>
-                <p class="font-eng text-center text-[#d4a373] italic mb-10 tracking-[0.3em] uppercase text-xs">Awaiting Your Reply</p>
+                <!-- RSVP 雙語小標題 (縮小尺寸、回歸乾淨高級排版) -->
+                <div class="mb-10 text-center">
+                    <h3 class="text-base md:text-xl font-medium tracking-[0.2em] text-stone-700 mb-1" data-zh="出席回函" data-en="RSVP">出席回函</h3>
+                    <p class="font-eng text-[#d4a373] text-[9px] md:text-[10px] tracking-[0.4em] uppercase opacity-80">Awaiting Your Reply</p>
+                </div>
 
+                <!-- 隱藏式 Iframe 提交技術 -->
                 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
                 
+                <!-- 已對接 Google 表單實際 formResponse 網址 -->
                 <form action="https://docs.google.com/forms/d/e/1FAIpQLScYqib4V6CQ9cj2wYNr7l-_f97SYxOGYa5Y-miXrX4yAcYF1g/formResponse" method="POST" target="hidden_iframe" id="weddingForm">
                     <div class="space-y-8">
                         
@@ -646,6 +602,7 @@
     </div>
 
     <script>
+        // Countdown Timer
         const targetDate = new Date("Dec 12, 2026 18:00:00").getTime();
         const updateCountdown = () => {
             const now = new Date().getTime();
@@ -669,6 +626,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // UI Logic: Smart Fields
         function handleAttendanceChange(isAttending) {
             var target = document.getElementById('banquet_smart_fields');
             var adultInput = document.getElementById('adult_guests_input');
@@ -698,6 +656,7 @@
             }
         }
 
+        // Background Music Control
         const music = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         const musicIcon = document.getElementById('music-icon');
@@ -734,6 +693,7 @@
         document.addEventListener('click', autoPlayOnFirstInteraction);
         document.addEventListener('touchstart', autoPlayOnFirstInteraction);
 
+        // Form Submission Logic
         var submitted = false;
         
         document.getElementById('weddingForm').addEventListener('submit', function() {
@@ -753,6 +713,7 @@
             }, 500);
         }
 
+        // Canvas Petals Animation
         const canvas = document.getElementById('petal-canvas');
         const ctx = canvas.getContext('2d');
 
@@ -821,6 +782,7 @@
             animatePetals();
         };
 
+        // Scroll Reveal Logic
         const revealElements = document.querySelectorAll('.reveal');
         const checkReveal = () => {
             const triggerBottom = window.innerHeight * 0.85;
@@ -834,6 +796,7 @@
         window.addEventListener('scroll', checkReveal);
         checkReveal();
 
+        // Bilingual Language Switcher Logic
         let currentLanguage = 'zh';
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
@@ -859,6 +822,7 @@
             document.title = currentLanguage === 'zh' ? 'Ou yang Po-yen & Chen Yi han 婚禮邀請函' : 'Ou yang Po-yen & Chen Yi han Wedding Invitation';
         }
 
+        // Lightbox Logic
         function openLightbox(imgSrc) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
