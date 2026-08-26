@@ -65,7 +65,7 @@
             height: 100%;
             /* 恢復 cover 滿版無留白 */
             object-fit: cover; 
-            /* 關鍵：第一個數值(X軸)控制左右，大於 50% 圖片會往左移；第二個數值(Y軸)維持 25% 保護臉部 */
+            /* 手機版預設：稍微往左移，保護臉部 */
             object-position: 60% 25%;
             will-change: transform;
             transform: translateZ(0);
@@ -73,6 +73,14 @@
             image-rendering: -webkit-optimize-contrast;
             image-rendering: crisp-edges;
             image-rendering: auto;
+        }
+
+        /* 針對網頁版（寬螢幕）設定：讓圖片更往左移 */
+        @media (min-width: 768px) {
+            .hero-img-optimized {
+                /* 數值越大，圖片越往左。這裡設定 80% 讓網頁版明顯靠左 */
+                object-position: 80% 25%;
+            }
         }
 
         /* Countdown Cards (Mobile Optimized) */
