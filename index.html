@@ -45,6 +45,7 @@
             border-bottom: 1px solid rgba(212, 163, 115, 0.1);
             z-index: 1000;
         }
+        
         /* Hero Section Container */
         .hero-bg {
             position: relative;
@@ -52,13 +53,19 @@
             width: 100%;
             overflow: hidden;
         }
+        @media (min-width: 768px) {
+            .hero-bg {
+                /* 網頁版稍微降低高度，讓滿版圖片能自然縮小，人物就不會太大 */
+                height: 85vh; 
+            }
+        }
         
         /* GPU Accelerated Ultra-sharp Image Fitting */
         .hero-img-optimized {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 手機版：完美的對準位置，偏左且保有上半部空間 */
+            /* 手機版：完美的對準位置，偏左 (60%) 且保有上半部空間 (25%) */
             object-position: 60% 25%; 
             will-change: transform;
             transform: translateZ(0);
@@ -68,12 +75,13 @@
             image-rendering: auto;
         }
 
-        /* 針對網頁版（寬螢幕）設定：讓圖片更往左移 */
+        /* 針對網頁版（寬螢幕）設定：讓圖片更往左移並縮小 */
         @media (min-width: 768px) {
             .hero-img-optimized {
-                /* 100% 已經是原圖邊緣，利用 scale 放大爭取空間，再強制往左平移 */
-                object-position: 100% 25%;
-                transform: scale(1.12) translate3d(-4%, 0, 0);
+                /* 100% 已經是原圖最右側邊緣 */
+                object-position: 100% 20%;
+                /* 縮小倍率為 1.08 (原本是1.12)，並利用 -3.5% 的極限平移把畫面往左推，保證不產生白邊 */
+                transform: scale(1.08) translate3d(-3.5%, 0, 0);
             }
         }
 
@@ -220,10 +228,10 @@
     <!-- Floating Background Music Player -->
     <div class="fixed bottom-6 right-6 z-50 flex items-center gap-2">
         <!-- 音樂提醒氣泡：引導點擊 -->
-        <div id="music-tip" class="bg-white/95 text-stone-500 border border-brand-gold/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
+        <div id="music-tip" class="bg-white/95 text-stone-500 border border-[#d4a373]/20 text-[10px] py-1.5 px-3 rounded-full shadow-md font-sans tracking-wider hidden sm:block whitespace-nowrap">
             點擊播放背景音樂 🎵
         </div>
-        <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-brand-gold/30 text-[#d4a373] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a373]/50">
+        <button id="music-btn" onclick="toggleMusic()" class="w-12 h-12 bg-white/90 border border-[#d4a373]/30 text-[#d4a373] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#d4a373]/50">
             <i id="music-icon" class="fa-solid fa-music text-lg"></i>
         </button>
         <!-- 背景音樂設定 -->
