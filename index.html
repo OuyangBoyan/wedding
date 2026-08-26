@@ -51,8 +51,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 手機版：對焦點往左微調 (35%)，確保左側的新娘與戒指不被裁切 */
-            object-position: 35% 25%;
+            /* 手機版：對焦點強力往左錨定 (15%)，確保左側的新娘與戒指完整保留 */
+            object-position: 15% 25%;
             will-change: transform;
             transform: translateZ(0);
             backface-visibility: hidden;
@@ -237,8 +237,8 @@
     </nav>
 
     <!-- Hero Section (畫廊留白裱框：徹底解決黑邊與漸層異常) -->
-    <!-- 手機版高度微調至 85vh 迫使圖片在橫向裝入更多畫面，網頁版維持您的 100vh 設計 -->
-    <section class="relative w-full h-[85vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
+    <!-- 手機版高度微調至 78vh，強迫系統縮小圖片倍率，網頁版維持您的 100vh 完美設計不動 -->
+    <section class="relative w-full h-[78vh] md:h-[100vh] bg-[#fdfaf7] md:p-8 lg:p-12 flex items-center justify-center overflow-hidden">
         
         <!-- 實體圖片與遮罩的共用容器 (手機滿版，網頁版自帶縮小、圓角與高級陰影) -->
         <div class="relative w-full h-full md:rounded-[2rem] overflow-hidden md:shadow-[0_20px_60px_rgba(0,0,0,0.08)] flex items-end justify-center">
