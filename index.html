@@ -439,9 +439,11 @@
             
             <!-- 左半部：電子喜帖（Save the date & Details） -->
             <div class="w-full lg:w-1/2 flex flex-col sm:flex-row lg:flex-col gap-6 items-center justify-center">
+                <!-- 1. 封面圖 (Save The Date) -->
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
                     <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('封面圖.jpg')">
                         <img src="封面圖.jpg" alt="Save The Date 封面" class="w-full h-full object-cover">
+                        <!-- 點擊放大提示罩 -->
                         <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-sans tracking-widest gap-2">
                             <i class="fa-solid fa-magnifying-glass-plus"></i> 點擊放大查看
                         </div>
@@ -451,9 +453,10 @@
                     </div>
                 </div>
 
+                <!-- 2. 內頁圖 (Wedding Details) -->
                 <div class="bg-white p-3 rounded-3xl shadow-[0_15px_40px_rgba(212,163,115,0.12)] border border-stone-100 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-[340px] sm:max-w-none">
-                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('內頁.png')">
-                        <img src="內頁.png" alt="Wedding Details 內頁" class="w-full h-full object-cover">
+                    <div class="overflow-hidden rounded-2xl relative aspect-[3/4] cursor-pointer" onclick="openLightbox('內頁修正.png')">
+                        <img src="內頁修正.png" alt="Wedding Details 內頁" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white text-xs font-sans tracking-widest gap-2">
                             <i class="fa-solid fa-magnifying-glass-plus"></i> 點擊放大查看
                         </div>
